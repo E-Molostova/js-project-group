@@ -2,3 +2,30 @@
   background: inherit;
   border: inherit;
 }
+
+.logo-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.search-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.site-logo {
+  display: flex;
+}
+
+.site-nav {
+  display: flex;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+  text-transform: uppercase;
+}
+
+.header-nav {
+  display: flex;
+}
