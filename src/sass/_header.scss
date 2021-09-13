@@ -15,6 +15,23 @@
 
 .site-logo {
   display: flex;
+  align-items: baseline;
+}
+
+.site-logo-label {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: inline;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.16;
+  }
+}
+
+.site-logo a {
+  color: #fff;
+  //   color: var(--header-text-color);
 }
 
 .site-nav {
@@ -26,6 +43,54 @@
   text-transform: uppercase;
 }
 
+.site-nav a {
+  color: #fff;
+  //   color: var(--header-text-color);
+}
+
 .header-nav {
   display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.header {
+  background-color: #000;
+}
+
+.smth-wrong {
+  color: #ff001b;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.16;
+
+  text-align: center;
+}
+
+.site-nav-library {
+  margin-left: 40px;
+}
+
+input[type='search'] {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.16;
+  color: #fff;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  width: 253px;
+}
+input[type='search']::placeholder {
+  color: #fff;
+}
+
+.search-form {
+  width: 100%;
+  border-bottom: 0.5px solid #ffffff;
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
 }
