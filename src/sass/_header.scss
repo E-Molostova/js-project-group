@@ -48,25 +48,24 @@
   margin-left: 40px;
 }
 
-// .site-nav-home.current::after {
-//   content: '';
-//   position: absolute;
-//   left: 0;
-//   top: 50px;
-//   width: 100%;
-//   height: 4px;
-//   background-color: orange;
-//   border-radius: 2px;
-// }
+.site-nav-item {
+  position: relative;
+}
+
+.site-nav-link.current::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 100%;
+  height: 3px;
+  background-color: orange;
+  //   border-radius: 2px;
+}
 
 .site-nav-link {
   color: #fff;
-  //   color: var(--header-text-color);
 }
-
-// .site-nav-link:not(:first-child) {
-//   margin-left: 40px;
-// }
 
 .header-nav {
   display: flex;
