@@ -1,0 +1,14 @@
+<div class='moveResult'>
+  {{#each this.results}}
+    <div class='moveResult_moveCard'>
+      <img class='moveResult_cardImg' src={{backdrop_path}} alt={{title}} />
+      <h1 class='moveResult_title'>{{title}}</h1>
+      <ul class='moveResult_genreList'>
+        {{#each genre_ids}}
+          <li class='moveResult_genre'>{{this}},</li>
+        {{/each}}
+        <p class='moveResult_genre moveResult_years'> | {{release_date}}</p>
+      </ul>
+    </div>
+  {{/each}}
+</div>

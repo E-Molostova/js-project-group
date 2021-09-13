@@ -7,12 +7,20 @@ export default class ApiService {
     this.query = '';
     this.id = 0;
   }
+  fetchGenres() {
+    const genresParams = new URLSearchParams({
+      api_key: this.#API_KEY,
+    });
 
+    return fetch(`${this.BASE_URL}/genre/movie/list?${genresParams}`).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error('Something went wrong');
+    });
+  }
+  // ttps://api.themoviedb.org/3/genre/movie/list?api_key=43599aecc4a107996f3426684f8b9f50&language=en-US
   fetchTrending() {
-    // https://api.themoviedb.org/3/trending/movie/week
-    // https://api.themoviedb.org/3/movie/550?api_key=43599aecc4a107996f3426684f8b9f50
-    // https://api.themoviedb.org/3/search/movie?api_key=43599aecc4a107996f3426684f8b9f50&language=en-US&query=war%20of%20nations&page=1&include_adult=false&region=ukraine&year=2021
-
     const trendingParams = new URLSearchParams({
       api_key: this.#API_KEY,
       page: this.page,
@@ -32,7 +40,6 @@ export default class ApiService {
       page: this.page,
       query: this.query,
       include_adult: false,
-      region: ukraine,
       year: 2021,
     });
 
@@ -45,11 +52,11 @@ export default class ApiService {
   }
 
   fetchMovieById() {
-    const queryParams = new URLSearchParams({
+    const idParams = new URLSearchParams({
       api_key: this.#API_KEY,
     });
 
-    return fetch(`${this.BASE_URL}/movie/${this.id}?${queryParams}`).then(res => {
+    return fetch(`${this.BASE_URL}/movie/${this.id}?${idParams}`).then(res => {
       if (res.ok) {
         return res.json();
       }
@@ -57,11 +64,11 @@ export default class ApiService {
     });
   }
 
-  set query(qValue) {
+  set q(qValue) {
     this.query = qValue.split(' ').join('%20');
   }
 
-  set id(idValue) {
+  set movid(idValue) {
     this.id = Number(idValue);
   }
 
@@ -73,3 +80,6 @@ export default class ApiService {
     this.page = 1;
   }
 }
+// https://api.themoviedb.org/3/trending/movie/week
+// https://api.themoviedb.org/3/movie/550?api_key=43599aecc4a107996f3426684f8b9f50
+// https://api.themoviedb.org/3/search/movie?api_key=43599aecc4a107996f3426684f8b9f50&language=en-US&query=war%20of%20nations&page=1&include_adult=false&region=ukraine&year=2021
