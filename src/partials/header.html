@@ -1,4 +1,4 @@
-<header class="header header-secondary-bg">
+<header class="header header-main-bg">
   <div class="header-container container">
     <div class="header-nav">
       <ul class="site-logo-list">
@@ -18,12 +18,12 @@
           <a class="site-nav-link current" href="http://localhost:1234/">home</a>
         </li>
         <li class="site-nav-item">
-          <a class="site-nav-link current" href="http://localhost:1234/">my library</a>
+          <a class="site-nav-link" href="http://localhost:1234/">my library</a>
         </li>
       </ul>
     </div>
 
-    <div class="search-form is-hidden">
+    <div class="search-form">
       <form class="search">
         <input type="search" name="search" autocomplete="off" placeholder="Поиск фильмов" />
         <button type="submit" class="search-film">
@@ -33,12 +33,12 @@
         </button>
       </form>
     </div>
-    <div class="smth-wrong-container is-hidden">
+    <div class="smth-wrong-container">
       <span class="smth-wrong">Search result not successful. Enter the correct movie name</span>
     </div>
     <div class="header-library-btns">
-      <button type="button" class="library-btn active">watched</button>
-      <button type="button" class="library-btn">queue</button>
+      <button type="button" class="library-btn active head-is-hidden">watched</button>
+      <button type="button" class="library-btn head-is-hidden">queue</button>
     </div>
   </div>
 </header>
