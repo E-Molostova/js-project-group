@@ -61,6 +61,10 @@ export default class ApiService {
     this.query = qValue.split(' ').join('%20');
   }
 
+  set id(idValue) {
+    this.id = Number(idValue);
+  }
+
   incrementPage() {
     this.page += 1;
   }
