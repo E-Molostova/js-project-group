@@ -1,29 +1,37 @@
-<div class="modal-window" data-modal-movie>
+<!-- <div class="modal-window backdrop is-hidden" data-modal-movie> -->
+<div class="modal-window" data-modal-movie></div>
     <button class="modal-close-btn" type="button" data-modal-close>
-        <svg width="30" height="30">
-            <use href="../images/close.svg"></use>
+        <svg class="modal-icon-close">
+            <use href="./images/close.svg#close"></use>
         </svg>
     </button>
-    <img class="modal-movie-cover" src="" alt="" width="240px" height="355px">
-    <h3 class="modal-movie-headline">movie title</h3>
-    <div class="modal-movie-stats-container">
-        <div class="modal-movie-stats-titles">
-            <p>Vote / Votes</p>
-            <p>Popularity</p>
-            <p>Original Title</p>
-            <p>Genre</p>
+    <div class="modal-wraper">
+        <img class="modal-movie-cover" src="./images/empty.jpg" alt="empty">
+        <div class="movie-content-wraper">
+            <h3 class="modal-movie-headline txt2uppcase">movie title</h3>
+            <div class="modal-movie-stats-container">
+                <ul class="modal-movie-stats-titles">
+                    <li>Vote / Votes</li>
+                    <li>Popularity</li>
+                    <li>Original Title</li>
+                    <li>Genre</li>
+                </ul>
+                <ul class="modal-movie-stats-data">
+                    <li> 
+                        <span class="vote">0.0</span>  
+                        <span class="modal-movie-stats-titles">/</span> 
+                        <span class="votes">0000</span></li>
+                    <li>000.0</li>
+                    <li class="txt2uppcase">movie title</li>
+                    <li>Genre name</li>
+                </ul>
+            </div>
+            <h4 class="modal-movie-about-headline txt2uppcase">About</h4>
+            <p class="modal-movie-about-descr">movie description</p>
+            <div class="modal-movie-btn-wraper">
+                <button class="add2watch-btn txt2uppcase" type="button" data-modal-add2watch-btn>add to Watched</button>
+                <button class="add2queue-btn txt2uppcase" type="button" data-modal-add2queue-btn>add to queue</button>
+            </div>
         </div>
-        <div class="modal-movie-stats-data">
-            <p>0.0 / 0000</p>
-            <p>000.0</p>
-            <p>movie title</p>
-            <p>genre name</p>
-        </div>
-    </div>
-    <h4 class="modal-movie-about-headline">About</h4>
-    <p class="modal-movie-about-descr">movie description</p>
-    <div>
-        <button class="add2watch-btn" type="button" data-modal-add2watch-btn>add to Watched</button>
-        <button class="add2queue-btn" type="button" data-modal-add2queue-btn>add to queue</button>
     </div>
 </div>
