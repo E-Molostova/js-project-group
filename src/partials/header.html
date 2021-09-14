@@ -13,12 +13,13 @@
           <a class="site-logo-link site-logo-label" href="http://localhost:1234/">Filmoteka</a>
         </li>
       </ul>
+
       <ul class="site-nav">
         <li class="site-nav-item">
-          <a class="site-nav-link current" href="http://localhost:1234/">home</a>
+          <a class="site-nav-link current" href="http://localhost:1234/" id="home">home</a>
         </li>
         <li class="site-nav-item">
-          <a class="site-nav-link" href="http://localhost:1234/">my library</a>
+          <a class="site-nav-link" href="http://localhost:1234/" id="library">my library</a>
         </li>
       </ul>
     </div>
@@ -33,12 +34,14 @@
         </button>
       </form>
     </div>
-    <div class="smth-wrong-container">
+    <div class="smth-wrong-container header-is-hidden">
       <span class="smth-wrong">Search result not successful. Enter the correct movie name</span>
     </div>
     <div class="header-library-btns">
-      <button type="button" class="library-btn active head-is-hidden">watched</button>
-      <button type="button" class="library-btn head-is-hidden">queue</button>
+      <button type="button" class="library-btn active header-is-hidden" id="home-btn">
+        watched
+      </button>
+      <button type="button" class="library-btn header-is-hidden" id="library-btn">queue</button>
     </div>
   </div>
 </header>
