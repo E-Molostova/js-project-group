@@ -1,5 +1,5 @@
 .footer-text {
-  color: $footer-text-color;
+  color: var(--footer-text-color);
   display: flex;
   justify-content: center;
 }
@@ -20,15 +20,16 @@
 }
 
 .footer-text-link {
-  color: $footer-text-color;
+  color: var(--footer-text-color);
 }
 
 .team__member-photo {
-  width: 110px;
-  height: 100px;
+  width: 270px;
+  height: 260px;
 }
 
 .team-list {
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   margin-left: -30px;
@@ -36,9 +37,8 @@
 
 .team-list__item {
   margin-left: 30px;
-  align-items: center;
-  flex-basis: calc((100% - 15px) / 6);
-  max-width: 110px;
+  flex-basis: calc((100% - 90px) / 3);
+  max-width: 270px;
   padding-bottom: 30px;
 }
 
