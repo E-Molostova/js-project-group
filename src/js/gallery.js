@@ -1,5 +1,5 @@
 import ApiService from './api-service';
-// import makeMoviesMarkup from '../templates/moveList.hbs';
+import makeMoviesMarkup from '../templates/movieList.hbs';
 // import Handlebars from 'handlebars';
 
 const api = new ApiService();
@@ -49,8 +49,8 @@ const renderMovies = ({ results }) => {
   });
   console.log(normilizedResults);
   // console.log(makeMoviesMarkup);
-  // const markup = makeMoviesMarkup(normilizedResults);
-  // refs.output.insertAdjacentHTML('beforeend', markup);
+  const markup = makeMoviesMarkup(normilizedResults);
+  // document.body.insertAdjacentHTML('beforeend', markup);
 };
 
 // const fetchTr = () => {
