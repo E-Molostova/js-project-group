@@ -1,0 +1,44 @@
+<header class="header">
+  <div class="header-container container header-main-bg">
+    <div class="header-nav">
+      <ul class="site-logo-list">
+        <li>
+          <a class="site-logo-link" href="http://localhost:1234/">
+            <svg class="logo-icon">
+              <use href="./images/film-sprite.svg#icon-film"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a class="site-logo-link site-logo-label" href="http://localhost:1234/">Filmoteka</a>
+        </li>
+      </ul>
+      <ul class="site-nav">
+        <li class="site-nav-item">
+          <a class="site-nav-link current" href="http://localhost:1234/">home</a>
+        </li>
+        <li class="site-nav-item">
+          <a class="site-nav-link" href="http://localhost:1234/">my library</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="search-form">
+      <form class="search">
+        <input type="search" name="search" autocomplete="off" placeholder="Поиск фильмов" />
+        <button type="submit" class="search-film">
+          <svg class="search-icon">
+            <use href="./images/film-sprite.svg#icon-search-2"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <div class="smth-wrong-container">
+      <span class="smth-wrong">Search result not successful. Enter the correct movie name</span>
+    </div>
+    <div class="header-library-btns">
+      <button type="button" class="library-btn active head-is-hidden">watched</button>
+      <button type="button" class="library-btn head-is-hidden">queue</button>
+    </div>
+  </div>
+</header>
