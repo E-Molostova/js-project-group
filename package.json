@@ -5,7 +5,7 @@
   "main": "index.js",
   "homepage": "https://E-Molostova.github.io/js-project-group",
   "scripts": {
-    "dev": "parcel src/*.html",
+    "dev": "parcel src/*.html --no-source-maps",
     "build": "parcel build src/*.html --public-url /js-project-group/"
   },
   "repository": {
