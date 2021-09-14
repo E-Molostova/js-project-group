@@ -31,8 +31,7 @@
 }
 
 .site-logo-link {
-  color: #fff;
-  //   color: var(--header-text-color);
+  color: $header-text-color;
 }
 
 .site-nav {
@@ -59,7 +58,7 @@
   top: 13px;
   width: 100%;
   height: 3px;
-  background-color: orange;
+  background-color: $secondary-text-color;
   //   border-radius: 2px;
 }
 
@@ -70,12 +69,12 @@
 //   top: 13px;
 //   width: 100%;
 //   height: 3px;
-//   background-color: orange;
+//   background-color: $secondary-text-color;
 //   //   border-radius: 2px;
 // }
 
 .site-nav-link {
-  color: #fff;
+  color: $header-text-color;
 }
 
 .header-nav {
@@ -123,37 +122,37 @@
 // }
 
 .header-main-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(../images/mob-home-2x-min.jpg);
   background-repeat: no-repeat;
   background-position: center;
   //   object-fit: contain;
   background-size: contain;
   @media screen and (min-width: 768px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/tab-home-2x-min.jpg);
   }
 
   @media screen and (min-width: 1024px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/desc-home-2x-min.jpg);
   }
 }
 
 .header-secondary-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(../images/mob-queue-2x-min.jpg);
   background-repeat: no-repeat;
   background-position: center;
   //   object-fit: contain;
   background-size: contain;
   @media screen and (min-width: 768px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/tab-queue-2x-min.jpg);
   }
 
   @media screen and (min-width: 1024px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/desc-queue-2x-min.jpg);
   }
 }
@@ -176,7 +175,7 @@ input[type='search'] {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.16;
-  color: #fff;
+  color: $header-text-color;
   background-color: inherit;
   border: none;
   outline: none;
@@ -186,13 +185,13 @@ input[type='search'] {
   }
 }
 input[type='search']::placeholder {
-  color: #fff;
+  color: $header-text-color;
 }
 
 .search-form {
   width: 100%;
   height: 20px;
-  border-bottom: 0.5px solid #ffffff;
+  border-bottom: 0.5px solid $header-text-color;
   margin-left: auto;
   margin-right: auto;
   margin-top: 41px;
@@ -231,10 +230,10 @@ input[type='search']::placeholder {
 
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
+  color: $header-text-color;
   background: inherit;
 
-  border: 1px solid #ffffff;
+  border: 1px solid $header-text-color;
 
   border-radius: 5px;
 
@@ -250,13 +249,13 @@ input[type='search']::placeholder {
 }
 
 .library-btn.active {
-  background: #ff6b01;
+  background: $secondary-text-color;
 
-  border: 1px solid #ff6b01;
+  border: 1px solid $secondary-text-color;
 }
 
 // .library-btn:active {
-//   background: #ff6b01;
+//   background: $secondary-text-color;
 
-//   border: 1px solid #ff6b01;
+//   border: 1px solid $secondary-text-color;
 // }
