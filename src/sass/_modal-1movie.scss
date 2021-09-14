@@ -29,23 +29,23 @@
 //     }
 // }
 
-.modal-close-btn {
-    position: absolute;
-    width: 30px;
-    height: 30px;
+// .modal-close-btn {
+//     position: absolute;
+//     width: 30px;
+//     height: 30px;
 
-    top: 0;
-    right: 0;
-    margin-top: 10px;
-    margin-right: 10px;
+//     top: 0;
+//     right: 0;
+//     margin-top: 10px;
+//     margin-right: 10px;
 
-    border-style: none;
+//     border-style: none;
 
-    background-color: white;
-}
-.modal-icon-close {
-    fill: black;
-}
+//     background-color: $primary-bg-color;
+// }
+// .modal-icon-close {
+//     fill: black;
+// }
 
 .modal-wraper {
     padding: 50px 20px 40px 20px;
@@ -79,13 +79,13 @@
 
 .modal-movie-headline {
     margin-bottom: 20px;
-    font-family: Roboto;
-    font-style: normal;
+    // font-family: Roboto;
+    // font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 23px;
 
-    color: #000000;
+    color: $primary-text-color;
 }
 .modal-movie-stats-container {
     display: flex;
@@ -93,8 +93,8 @@
 }
 .modal-movie-stats-titles {
     width: 50%;
-    font-family: Roboto;
-    font-style: normal;
+    // font-family: Roboto;
+    // font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
@@ -104,8 +104,8 @@
 
 .modal-movie-stats-data {
     width: 50%;
-    font-family: Roboto;
-    font-style: normal;
+    // font-family: Roboto;
+    // font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
@@ -117,16 +117,16 @@
 
 .modal-movie-stats-data .vote {
     padding: 1px 10px;
-    color: white;
+    color: $primary-bg-color;
     text-align: center;
-    background: #FF6B01;
+    background: $secondary-text-color;
     border-radius: 5px;
 }
 .modal-movie-stats-data .votes {
     padding: 1px 10px;
 
     text-align: center;
-    background: #F7F7F7;
+    background: $footer-bg-color;
     border-radius: 5px;
 }
 .txt2uppcase {
@@ -134,8 +134,8 @@
 }
 .modal-movie-about-headline {
     padding-bottom: 20px;
-    font-family: Roboto;
-    font-style: normal;
+    // font-family: Roboto;
+    // font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
@@ -144,8 +144,8 @@
 .modal-movie-about-descr {
     margin-bottom: 20px;
 
-    font-family: Roboto;
-    font-style: normal;
+    // font-family: Roboto;
+    // font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 20px;
@@ -162,17 +162,17 @@
     width: 112px;
     height: 44px;
 
-    font-family: Roboto;
-    font-style: normal;
+    // font-family: Roboto;
+    // font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
 
-    border: 1px solid #000000;
+    border: 1px solid $primary-text-color;
     box-sizing: border-box;
     border-radius: 5px;
 
-    background: white;
+    background: $primary-bg-color;
 
     @media screen and (min-width: 1024px) {
         width: 136px;
@@ -180,7 +180,7 @@
 }
 .active-btn {
     border: none;
-    color: white;
+    color: $header-text-color;
     text-align: center;
-    background: #FF6B01;
+    background: $secondary-text-color;
 }
