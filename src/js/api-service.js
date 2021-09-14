@@ -68,7 +68,7 @@ export default class ApiService {
     this.query = qValue.split(' ').join('%20');
   }
 
-  set movid(idValue) {
+  set movId(idValue) {
     this.id = Number(idValue);
   }
 
