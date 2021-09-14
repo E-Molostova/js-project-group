@@ -10,6 +10,7 @@ import Vlad from '../images/team/Vlad.jpg';
 import Slava from '../images/team/Slava.jpg';
 import Artem from '../images/team/Artem.jpg';
 import Andrei from '../images/team/Andrei.jpg';
+import refs from './refs';
 
 const obj = {
   facebook,
@@ -31,29 +32,24 @@ const obj = {
 // };
 
 // const closebtn = document.querySelector('[data-modal-close]');
-// const modal = document.querySelector('[data-modal]');
+// const modalFooter = document.querySelector('[data-modal]');
 
 // closebtn.addEventListener('click, onClosebtnClick');
 
 // function onClosebtnClick() {
-//   modal.classList.active('is-hidden');
+//   modalFooter.classList.active('is-hidden');
 // }
 
-const refs = {
-  openModalBtn: document.querySelector('.js-footer-text-link'),
-
-  modal: document.querySelector('.js-backdrop-footer'),
-};
-console.log(refs.modal);
-refs.openModalBtn.addEventListener('click', openModalBtnHandler);
+console.log(refs.modalFooter);
+refs.openModalBtnFooter.addEventListener('click', openModalBtnHandler);
 
 function openModalBtnHandler() {
-  refs.modal.classList.remove('is-hidden');
-  refs.modal.innerHTML = team(obj);
+  refs.modalFooter.classList.remove('is-hidden');
+  refs.modalFooter.innerHTML = team(obj);
   refs.closeModalBtn = document.querySelector('.js-modal-footer__close-btn');
   refs.closeModalBtn.addEventListener('click', closeModalBtnHandler);
 }
 
 function closeModalBtnHandler() {
-  refs.modal.classList.add('is-hidden');
+  refs.modalFooter.classList.add('is-hidden');
 }

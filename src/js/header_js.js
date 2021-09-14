@@ -1,22 +1,12 @@
-const refsH = {
-  pageHome: document.querySelector('#home'),
-  pageLibrary: document.querySelector('#library'),
-  headerContainer: document.querySelector('.header-container'),
-  siteLogoList: document.querySelector('.site-logo-list'),
-  searchContainer: document.querySelector('.search-form'),
-  searchForm: document.querySelector('.search'),
-  smthWrong: document.querySelector('.smth-wrong-container'),
-  btnHome: document.querySelector('#home-btn'),
-  btnLibrary: document.querySelector('#library-btn'),
-};
+import refs from "./refs"
 
-refsH.pageHome.addEventListener('click', onPageHome);
-refsH.siteLogoList.addEventListener('click', onPageHome);
-refsH.pageLibrary.addEventListener('click', onPageLibrary);
+refs.pageHome.addEventListener('click', onPageHome);
+refs.siteLogoList.addEventListener('click', onPageHome);
+refs.pageLibrary.addEventListener('click', onPageLibrary);
 
 function onPageHome(e) {
   e.preventDefault();
-  if (refsH.pageHome.classList.contains('current')) {
+  if (refs.pageHome.classList.contains('current')) {
     return;
   }
   updateBgImg();
@@ -25,7 +15,7 @@ function onPageHome(e) {
 
 function onPageLibrary(e) {
   e.preventDefault();
-  if (refsH.pageLibrary.classList.contains('current')) {
+  if (refs.pageLibrary.classList.contains('current')) {
     return;
   }
   updateBgImg();
@@ -33,18 +23,18 @@ function onPageLibrary(e) {
 }
 
 function updateBgImg() {
-  refsH.headerContainer.classList.toggle('header-main-bg');
-  refsH.headerContainer.classList.toggle('header-secondary-bg');
+  refs.headerContainer.classList.toggle('header-main-bg');
+  refs.headerContainer.classList.toggle('header-secondary-bg');
 }
 
 function changePage() {
-  refsH.searchContainer.classList.toggle('header-is-hidden');
-  refsH.btnHome.classList.toggle('header-is-hidden');
-  refsH.btnLibrary.classList.toggle('header-is-hidden');
-  refsH.pageHome.classList.toggle('current');
-  refsH.pageLibrary.classList.toggle('current');
+  refs.searchContainer.classList.toggle('header-is-hidden');
+  refs.btnHome.classList.toggle('header-is-hidden');
+  refs.btnLibrary.classList.toggle('header-is-hidden');
+  refs.pageHome.classList.toggle('current');
+  refs.pageLibrary.classList.toggle('current');
 }
 
 function smthWrong() {
-  refsH.smthWrong.classList.toggle('header-is-hidden');
+  refs.smthWrong.classList.toggle('header-is-hidden');
 }
