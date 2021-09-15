@@ -72,6 +72,10 @@ export default class ApiService {
     this.id = Number(idValue);
   }
 
+  set galleryPage(pageValue) {
+    this.page = Number(pageValue);
+  }
+
   incrementPage() {
     this.page += 1;
   }
