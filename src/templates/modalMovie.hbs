@@ -1,4 +1,4 @@
-<img class="modal-movie-cover" src='{{poster}}' alt='{{title}}'>
+<img class="modal-movie-cover" src='{{poster_path}}' alt='{{title}}'>
 <div class="movie-content-wraper">
     <h3 class="modal-movie-headline txt2uppcase">'{{title}}'</h3>
     <div class="modal-movie-stats-container">
@@ -14,11 +14,9 @@
                 <span class="modal-movie-stats-titles">/</span>
                 <span class="votes">{{vote_count}}</span>
             </li>
-            <li>{{popularity_rate}}</li>
+            <li>{{popularity}}</li>
             <li class="txt2uppcase">{{original_title}}</li>
-            {{#each genres}}
-                <li>{{this}}</li>
-            {{/each}}
+            <li>{{genres}}</li>            
         </ul>
     </div>
     <h4 class="modal-movie-about-headline txt2uppcase">About</h4>
