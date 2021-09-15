@@ -17,7 +17,7 @@ const saveGenresList = data => {
 };
 console.log(genres);
 fetch();
-
+export default api;
 // const getTrendingMovies = () => {
 //   api
 //     .fetchTrending()
@@ -55,46 +55,6 @@ fetch();
 //   // refs.galleryList.innerHTML = markup;
 // };
 
-const getMoviesById = () => {
-  api.movId = 385128;
-  api
-    .fetchMovieById()
-    .then(data => {
-      console.log(data);
-      rendermodal(data);
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
-};
-
-const rendermodal = results => {
-  const normilizedResult = preparingData(results);
-
-  console.log(normilizedResult);
-  const markup = makeMoviesById(normilizedResult);
-  refs.galleryList.insertAdjacentHTML('beforeend', markup);
-};
-
-function preparingData(result) {
-  console.log(result);
-  let releaseYear = 'Unknown';
-  if (Date.parse(result.release_date)) {
-    releaseYear = new Date(result.release_date).getFullYear();
-  }
-  const iconFullPath = `https://image.tmdb.org/t/p/w500${result.poster_path}`;
-  const poster = result.poster_path ? iconFullPath : emptyImg;
-  // console.log(genres);
-  // console.log(movie.genre_ids);
-  const genresNames = result.genres.map(genre => genre.name).join(', ');
-  return {
-    ...result,
-    release_date: releaseYear,
-    poster_path: poster,
-    genres: genresNames,
-  };
-}
-getMoviesById();
 // const fetchTr = () => {
 //   api.fetchTrending().then(data => {
 //     console.log(data);
