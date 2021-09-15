@@ -1,30 +1,27 @@
-import team from '../templates/modal-footer-team.hbs';
-import facebook from '../images/svg-footer/facebook.svg';
-import instagram from '../images/svg-footer/instagram.svg';
-import linkedin from '../images/svg-footer/linkedin.svg';
-import twitter from '../images/svg-footer/twitter.svg';
-import closebtn from '../images/svg-footer/close.svg';
-import Alex from '../images/team/Alex.jpg';
-import Elena from '../images/team/Elena.jpg';
-import Vlad from '../images/team/Vlad.jpg';
-import Slava from '../images/team/Slava.jpg';
-import Artem from '../images/team/Artem.jpg';
-import Andrei from '../images/team/Andrei.jpg';
-import refs from './refs';
+// import team from '../templates/modal-footer-team.hbs';
+// import footerSprite from '../images/footer-sprite.svg';
+// import facebook from '../images/footer-sprite.svg#icon-facebook';
+// import instagram from '../images/footer-sprite.svg#icon-instagram';
+// import linkedin from '../images/footer-sprite.svg#icon-linkedin';
+// import twitter from '../images/footer-sprite.svg#icon-twitter';
+// import closebtn from '../images/footer-sprite.svg#icon-close';
+// import Alex from '../images/team/Alex.jpg';
+// import Elena from '../images/team/Elena.jpg';
+// import Vlad from '../images/team/Vlad.jpg';
+// import Slava from '../images/team/Slava.jpg';
+// import Artem from '../images/team/Artem.jpg';
+// import Andrei from '../images/team/Andrei.jpg';
+// import refs from './refs';
 
-const obj = {
-  facebook,
-  instagram,
-  twitter,
-  linkedin,
-  closebtn,
-  Alex,
-  Elena,
-  Vlad,
-  Slava,
-  Artem,
-  Andrei,
-};
+// const obj = {
+//   footerSprite,
+//   Alex,
+//   Elena,
+//   Vlad,
+//   Slava,
+//   Artem,
+//   Andrei,
+// };
 
 // document.querySelector('.footer-text-link').onclick = () => {
 
@@ -40,16 +37,21 @@ const obj = {
 //   modalFooter.classList.active('is-hidden');
 // }
 
-console.log(refs.modalFooter);
+const refs = {
+  openModalBtnFooter: document.querySelector('.js-footer-text-link'),
+  closeModalBtn: document.querySelector('.js-modal-footer__close-btn'),
+  modalFooter: document.querySelector('.js-backdrop-footer'),
+};
+
 refs.openModalBtnFooter.addEventListener('click', openModalBtnHandler);
+refs.closeModalBtn.addEventListener('click', closeModalBtnHandler);
 
 function openModalBtnHandler() {
   refs.modalFooter.classList.remove('is-hidden');
-  refs.modalFooter.innerHTML = team(obj);
-  refs.closeModalBtn = document.querySelector('.js-modal-footer__close-btn');
-  refs.closeModalBtn.addEventListener('click', closeModalBtnHandler);
 }
 
 function closeModalBtnHandler() {
   refs.modalFooter.classList.add('is-hidden');
 }
+
+//  refs.modalFooter.innerHTML = team(obj);
