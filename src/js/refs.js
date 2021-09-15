@@ -1,6 +1,7 @@
 const refs = {
   pageHome: document.querySelector('#home'),
   pageLibrary: document.querySelector('#library'),
+  header: document.querySelector('.header'),
   headerContainer: document.querySelector('.header-container'),
   siteLogoList: document.querySelector('.site-logo-list'),
   searchContainer: document.querySelector('.search-form'),
