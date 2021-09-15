@@ -1,4 +1,4 @@
-import api from './gallery';
+import { api, preparingData } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
 
@@ -9,7 +9,8 @@ refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
 function openModal(evt) {
   let movieId = evt.target.closest('LI').id;
-  console.log(movieId);
+  // console.log(movieId);
+  getMoviesById(movieId);
   refs.modalMovieWindow.classList.remove('is-hidden');
   window.addEventListener('keydown', closeModalEsc);
 }
@@ -43,7 +44,7 @@ function closeModalEsc(evt) {
 }
 
 const getMoviesById = () => {
-  api.movId = 385128;
+  api.movId = null;
   api
     .fetchMovieById()
     .then(data => {
@@ -58,27 +59,27 @@ const getMoviesById = () => {
 const rendermodal = results => {
   const normilizedResult = preparingData(results);
 
-  console.log(normilizedResult);
+  // console.log(normilizedResult);
   const markup = makeMoviesById(normilizedResult);
   refs.galleryList.insertAdjacentHTML('beforeend', markup);
 };
 
-function preparingData(result) {
-  console.log(result);
-  let releaseYear = 'Unknown';
-  if (Date.parse(result.release_date)) {
-    releaseYear = new Date(result.release_date).getFullYear();
-  }
-  const iconFullPath = `https://image.tmdb.org/t/p/w500${result.poster_path}`;
-  const poster = result.poster_path ? iconFullPath : emptyImg;
-  // console.log(genres);
-  // console.log(movie.genre_ids);
-  const genresNames = result.genres.map(genre => genre.name).join(', ');
-  return {
-    ...result,
-    release_date: releaseYear,
-    poster_path: poster,
-    genres: genresNames,
-  };
-}
+// function preparingData(result) {
+//   // console.log(result);
+//   let releaseYear = 'Unknown';
+//   if (Date.parse(result.release_date)) {
+//     releaseYear = new Date(result.release_date).getFullYear();
+//   }
+//   const iconFullPath = `https://image.tmdb.org/t/p/w500${result.poster_path}`;
+//   const poster = result.poster_path ? iconFullPath : emptyImg;
+//   // console.log(genres);
+//   // console.log(movie.genre_ids);
+//   const genresNames = result.genres.map(genre => genre.name).join(', ');
+//   return {
+//     ...result,
+//     release_date: releaseYear,
+//     poster_path: poster,
+//     genres: genresNames,
+//   };
+// }
 getMoviesById();
