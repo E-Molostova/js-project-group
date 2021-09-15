@@ -99,9 +99,10 @@
   }
 }
 .our-team__item {
+  padding-left: 10px;
   display: flex;
   justify-content: space-between;
-  width: 270px;
+  width: 273px;
   &:not(last-child) {
     padding-bottom: 15px;
   }
@@ -133,17 +134,17 @@
   height: 30px;
 
   background: $primary-bg-color;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
-  &:hover .modal-footer__close-btn-icon,
-  &:focus .modal-footer__close-btn-icon {
-    fill: $secondary-text-color;
-  }
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  & .modal-footer__close-btn-icon {
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background: $secondary-text-color;
   }
 }
+
 /////////////////////////////team-list__container/////////////////////////
 
 .team-list__container {
