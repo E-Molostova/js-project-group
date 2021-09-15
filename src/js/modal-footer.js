@@ -53,5 +53,23 @@ function openModalBtnHandler() {
 function closeModalBtnHandler() {
   refs.modalFooter.classList.add('is-hidden');
 }
+//////////////////////////////////////press Esc to close/////////////////
 
-//  refs.modalFooter.innerHTML = team(obj);
+window.addEventListener('keydown', onKeyPress);
+
+function onKeyPress(e) {
+  if (e.code === 'Escape') {
+    refs.modalFooter.classList.add('is-hidden');
+  }
+}
+//////////////////////////////click out of modal to close////////////////////////////
+
+refs.modalFooter.addEventListener('click', onMouseClick);
+
+function onMouseClick(e) {
+  const backdrop = e.target;
+
+  if (backdrop === refs.modalFooter) {
+    refs.modalFooter.classList.add('is-hidden');
+  }
+}
