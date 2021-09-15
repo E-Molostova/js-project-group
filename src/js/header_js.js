@@ -1,4 +1,4 @@
-import refs from "./refs"
+import refs from './refs';
 
 refs.pageHome.addEventListener('click', onPageHome);
 refs.siteLogoList.addEventListener('click', onPageHome);
@@ -23,8 +23,8 @@ function onPageLibrary(e) {
 }
 
 function updateBgImg() {
-  refs.headerContainer.classList.toggle('header-main-bg');
-  refs.headerContainer.classList.toggle('header-secondary-bg');
+  refs.header.classList.toggle('header-main-bg');
+  refs.header.classList.toggle('header-secondary-bg');
 }
 
 function changePage() {
