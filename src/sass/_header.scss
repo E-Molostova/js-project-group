@@ -126,9 +126,10 @@
     url(../images/mob-home-2x-min.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  //   object-fit: contain;
-  background-size: contain;
-  @media screen and (min-width: 768px) {
+  // object-fit: contain;
+  object-fit: cover;
+  // background-size: contain;
+  @media screen and (min-width: 630px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/tab-home-2x-min.jpg);
   }
@@ -144,9 +145,11 @@
     url(../images/mob-queue-2x-min.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  //   object-fit: contain;
-  background-size: contain;
-  @media screen and (min-width: 768px) {
+  // object-fit: contain;
+  // object-fit: cover;
+  // background-size: contain;
+  background-size: cover;
+  @media screen and (min-width: 630px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/tab-queue-2x-min.jpg);
   }
