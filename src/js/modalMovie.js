@@ -2,17 +2,47 @@ import { api, preparingData } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
 
+const bodyRef = document.querySelector('body');
+// console.log(bodyRef);
+
 // listners
 refs.galleryList.addEventListener('click', openModal);
 refs.modalMovieWindowClsBtn.addEventListener('click', closeModal);
 refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
-function openModal(evt) {
+let movie = null;
+async function openModal(evt) {
   let movieId = evt.target.closest('LI').id;
-  // console.log(movieId);
-  getMoviesById(movieId);
+  console.log(movieId);
+  clearModalContent();
+  showModalContent();
+  let movie = await getMoviesById(movieId);
+}
+
+function showModalContent() {
+  bodyRef.classList.toggle('no-scroll');
   refs.modalMovieWindow.classList.remove('is-hidden');
   window.addEventListener('keydown', closeModalEsc);
+}
+
+function getMoviesById(id) {
+  api.movId = id;
+  api
+    .fetchMovieById()
+    .then(data => {
+      console.log(data);
+      renderModalContent(data);
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+}
+
+function renderModalContent(results) {
+  const normilizedResult = preparingData(results);
+  console.log(normilizedResult);
+  const markup = makeMoviesById(normilizedResult);
+  refs.modalContent.innerHTML = markup;
 }
 
 function preventAction(evt) {
@@ -20,6 +50,7 @@ function preventAction(evt) {
 }
 
 function clearModalContent() {
+  api.movId = 0;
   refs.modalContent.innerHTML = '';
 }
 
@@ -27,6 +58,7 @@ function clearModalContent() {
 function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', closeModalEsc);
+  bodyRef.classList.toggle('no-scroll');
 }
 
 function closeModalBackdropClick(evt) {
@@ -42,44 +74,3 @@ function closeModalEsc(evt) {
   }
   return;
 }
-
-const getMoviesById = () => {
-  api.movId = null;
-  api
-    .fetchMovieById()
-    .then(data => {
-      console.log(data);
-      rendermodal(data);
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
-};
-
-const rendermodal = results => {
-  const normilizedResult = preparingData(results);
-
-  // console.log(normilizedResult);
-  const markup = makeMoviesById(normilizedResult);
-  refs.galleryList.insertAdjacentHTML('beforeend', markup);
-};
-
-// function preparingData(result) {
-//   // console.log(result);
-//   let releaseYear = 'Unknown';
-//   if (Date.parse(result.release_date)) {
-//     releaseYear = new Date(result.release_date).getFullYear();
-//   }
-//   const iconFullPath = `https://image.tmdb.org/t/p/w500${result.poster_path}`;
-//   const poster = result.poster_path ? iconFullPath : emptyImg;
-//   // console.log(genres);
-//   // console.log(movie.genre_ids);
-//   const genresNames = result.genres.map(genre => genre.name).join(', ');
-//   return {
-//     ...result,
-//     release_date: releaseYear,
-//     poster_path: poster,
-//     genres: genresNames,
-//   };
-// }
-getMoviesById();

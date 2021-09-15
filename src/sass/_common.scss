@@ -8,7 +8,7 @@ body {
 }
 
 .backdrop {
-  position: fixed;
+  // position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -21,4 +21,8 @@ body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
