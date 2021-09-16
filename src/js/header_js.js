@@ -52,23 +52,24 @@ function smthOk() {
   refs.smthWrong.classList.add('header-is-hidden');
 }
 
-// let input = '';
+let input = '';
 
 function onSearch(e) {
   e.preventDefault();
   smthOk();
   spinerStyleToggle();
-  const input = refs.searchForm.elements.search.value;
+  api.resetPage();
+  input = refs.searchForm.elements.search.value;
   // console.log(input);
 
-  getMoviesByValue(input);
+  getMoviesByValue();
   getTotalNumberForPaginationSearch();
   refs.searchForm.reset();
 }
 
 // let testData = '';
 
-function getMoviesByValue(input) {
+function getMoviesByValue() {
   api.q = input;
   // api.galleryPage = paginationPage;
   api
@@ -92,7 +93,7 @@ function getMoviesByValue(input) {
     });
 }
 
-export { getMoviesByValue };
+export { getMoviesByValue, spinerStyleToggle };
 // console.log('testData:', testData);
 
 function renderModalContent({ results }) {

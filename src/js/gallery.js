@@ -4,7 +4,7 @@ import makeMoviesMarkup from '../templates/movieList.hbs';
 import refs from './refs';
 import pagination from 'tui-pagination';
 import emptyImg from '../images/not_found.jpg';
-import { getMoviesByValue } from './header_js';
+import { getMoviesByValue, spinerStyleToggle } from './header_js';
 // import Handlebars from 'handlebars';
 export { getTotalNumberForPaginationSearch };
 export { resPagination };
@@ -126,11 +126,12 @@ const getTotalNumberForPaginationSearch = function () {
 
 function onSwitchPage(e) {
   console.log('switch' + e.page);
-  instance.page = e.page;
+  // instance.page = e.page;
   api.page = e.page;
   refs.galleryList.innerHTML = '';
   if (api.query) {
     getMoviesByValue();
+    spinerStyleToggle();
   } else getTrendingMovies();
 }
 
