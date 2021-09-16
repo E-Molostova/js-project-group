@@ -1,7 +1,7 @@
 import refs from './refs';
 import { api, preparingData, getTrendingMovies } from './gallery';
 import makeMoviesMarkup from '../templates/movieList.hbs';
-import { resPagination } from './gallery';
+import { resPagination, getTotalNumberForPaginationSearch } from './gallery';
 // import pagination from 'tui-pagination';
 
 refs.pageHome.addEventListener('click', onPageHome);
@@ -59,7 +59,9 @@ function onSearch(e) {
   smthOk();
   input = refs.searchForm.elements.search.value;
   // console.log(input);
+
   getMoviesByValue();
+  getTotalNumberForPaginationSearch();
   refs.searchForm.reset();
 }
 
@@ -85,6 +87,7 @@ function getMoviesByValue(q) {
     });
 }
 
+export { getMoviesByValue };
 // console.log('testData:', testData);
 
 function renderModalContent({ results }) {
@@ -97,6 +100,5 @@ function renderModalContent({ results }) {
 function clearGalleryList() {
   api.resetPage();
   resPagination();
-  // instance.page = 1;
   refs.galleryList.innerHTML = '';
 }

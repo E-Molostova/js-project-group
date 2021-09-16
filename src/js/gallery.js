@@ -4,7 +4,10 @@ import makeMoviesMarkup from '../templates/movieList.hbs';
 import refs from './refs';
 import pagination from 'tui-pagination';
 import emptyImg from '../images/not_found.jpg';
+import { getMoviesByValue } from './header_js';
 // import Handlebars from 'handlebars';
+export { getTotalNumberForPaginationSearch };
+export { resPagination };
 
 const api = new ApiService();
 let genres = [];
@@ -108,12 +111,27 @@ const getTotalNumberForPagination = function () {
     });
 };
 
+const getTotalNumberForPaginationSearch = function () {
+  console.log('begin');
+  api
+    .fetchQuery()
+    .then(data => {
+      const num = data.total_results;
+      instance.reset(num);
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
+
 function onSwitchPage(e) {
   console.log('switch' + e.page);
   instance.page = e.page;
   api.page = e.page;
   refs.galleryList.innerHTML = '';
-  getTrendingMovies();
+  if (api.query) {
+    getMoviesByValue();
+  } else getTrendingMovies();
 }
 
 const instance = new pagination(container, options);
@@ -122,9 +140,5 @@ instance.on('beforeMove', onSwitchPage);
 getTotalNumberForPagination();
 
 function resPagination() {
-  // instance.page = 1;
-  // options.page = 0;
   instance.reset();
 }
-
-export { resPagination };
