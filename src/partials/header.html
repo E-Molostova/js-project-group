@@ -27,9 +27,14 @@
     <div class="search-form">
       <form class="search">
         <input type="search" name="search" autocomplete="off" placeholder="Поиск фильмов" />
+
         <button type="submit" class="search-film">
           <svg class="search-icon">
-            <use href="./images/film-sprite.svg#icon-search-2"></use>
+            <use class="serach-use" href="./images/film-sprite.svg#icon-search-2"></use>
+          </svg>
+
+          <svg class="spinner header-is-hidden" viewBox="0 0 50 50">
+            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
           </svg>
         </button>
       </form>

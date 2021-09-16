@@ -19,6 +19,8 @@ const refs = {
   watchedBtn: document.querySelector('.js-modal-watched'),
   queueBtn: document.querySelector('.js-modal-queue'),
   galleryList: document.querySelector('.js-gallery'),
+  searchSvg: document.querySelector('.serach-use'),
+  searchSpin: document.querySelector('.spinner'),
 };
 
 export default refs;
