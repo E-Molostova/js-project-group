@@ -32,6 +32,7 @@
   display: inline;
   width: 14px;
   height: 13px;
+  fill: $secondary-text-color;
 }
 
 .footer-text-second-part {
@@ -78,25 +79,46 @@
 
   color: $primary-text-color;
 
-  padding-bottom: 10px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 28px;
+  }
 }
 
 .our-team__list {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
+  @media screen and (min-width: 768px) {
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1024px) {
+    justify-content: space-around;
+  }
 }
 .our-team__item {
+  padding-left: 10px;
   display: flex;
   justify-content: space-between;
-  width: 270px;
+  width: 273px;
   &:not(last-child) {
     padding-bottom: 15px;
   }
   @media screen and (min-width: 768px) {
+    width: 300px;
+    justify-content: unset;
+
     &:not(first-child) {
       padding-left: 15px;
     }
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 420px;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -112,17 +134,17 @@
   height: 30px;
 
   background: $primary-bg-color;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
-  &:hover .modal-footer__close-btn-icon,
-  &:focus .modal-footer__close-btn-icon {
-    fill: $secondary-text-color;
-  }
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &.modal__close-btn-icon {
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background: $secondary-text-color;
   }
 }
+
 /////////////////////////////team-list__container/////////////////////////
 
 .team-list__container {
@@ -134,21 +156,43 @@
 .team__member-photo {
   width: 100px;
   height: 100px;
+  border-radius: 5px;
+
+  @media screen and (min-width: 1024px) {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 .team-list__title {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.67;
+  margin-bottom: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 20px;
+  }
 }
 .team-list__text {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.67;
+  margin-bottom: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 20px;
+  }
 }
 
 ////////////////////////social-network-list //////////////////
@@ -179,18 +223,20 @@
     border: none;
   }
 
-  &:hover .social-network-svg,
-  &:focus .social-network-svg {
-    fill: $primary-text-color;
+  @media screen and (min-width: 1024px) {
+    width: 30px;
+    height: 30px;
   }
 }
 
-.social-network-svg {
-  width: 14px;
-  height: 13px;
+.social-network-list__icon {
+  width: 15px;
+  height: 15px;
 
-  fill: $primary-text-color;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (min-width: 1024px) {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /////////////////backdrop///////////////

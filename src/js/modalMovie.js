@@ -1,17 +1,52 @@
-import api from './gallery';
+import { api, preparingData } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
+let currentMov = [];
+let renewSavedMovies = [];
+const bodyRef = document.querySelector('body');
+// console.log(bodyRef);
 
 // listners
 refs.galleryList.addEventListener('click', openModal);
 refs.modalMovieWindowClsBtn.addEventListener('click', closeModal);
 refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
-function openModal(evt) {
+let movie = null;
+async function openModal(evt) {
   let movieId = evt.target.closest('LI').id;
-  console.log(movieId);
+  // console.log(movieId);
+  clearModalContent();
+  showModalContent();
+  let movie = await getMoviesById(movieId);
+}
+
+function showModalContent() {
+  bodyRef.classList.toggle('no-scroll');
   refs.modalMovieWindow.classList.remove('is-hidden');
   window.addEventListener('keydown', closeModalEsc);
+}
+
+function getMoviesById(id) {
+  api.movId = id;
+  api
+    .fetchMovieById()
+    .then(data => {
+      // console.log(data);
+      renderModalContent(data);
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+}
+
+function renderModalContent(results) {
+  const normilizedResult = preparingData(results);
+  // console.log(normilizedResult);
+  currentMov = [];
+  currentMov.push(normilizedResult);
+  console.log(currentMov);
+  const markup = makeMoviesById(normilizedResult);
+  refs.modalContent.innerHTML = markup;
 }
 
 function preventAction(evt) {
@@ -19,6 +54,7 @@ function preventAction(evt) {
 }
 
 function clearModalContent() {
+  api.movId = 0;
   refs.modalContent.innerHTML = '';
 }
 
@@ -26,6 +62,11 @@ function clearModalContent() {
 function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', closeModalEsc);
+  bodyRef.classList.toggle('no-scroll');
+  addToWatched(currentMov);
+  // addToQueue(currentMov);
+  // removeFromWatched(currentMov);
+  console.log(currentMov);
 }
 
 function closeModalBackdropClick(evt) {
@@ -42,43 +83,117 @@ function closeModalEsc(evt) {
   return;
 }
 
-const getMoviesById = () => {
-  api.movId = 385128;
-  api
-    .fetchMovieById()
-    .then(data => {
-      console.log(data);
-      rendermodal(data);
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
-};
 
-const rendermodal = results => {
-  const normilizedResult = preparingData(results);
+// modal btns
 
-  console.log(normilizedResult);
-  const markup = makeMoviesById(normilizedResult);
-  refs.galleryList.insertAdjacentHTML('beforeend', markup);
-};
-
-function preparingData(result) {
-  console.log(result);
-  let releaseYear = 'Unknown';
-  if (Date.parse(result.release_date)) {
-    releaseYear = new Date(result.release_date).getFullYear();
-  }
-  const iconFullPath = `https://image.tmdb.org/t/p/w500${result.poster_path}`;
-  const poster = result.poster_path ? iconFullPath : emptyImg;
-  // console.log(genres);
-  // console.log(movie.genre_ids);
-  const genresNames = result.genres.map(genre => genre.name).join(', ');
-  return {
-    ...result,
-    release_date: releaseYear,
-    poster_path: poster,
-    genres: genresNames,
-  };
+function makeRemoveFromWatchedBtn() {
+  refs.watchedBtn.innerHTML = 'Remove from watched';
+  refs.watchedBtn.setAttribute('data-action', 'remove');
 }
-getMoviesById();
+function makeRemoveFromQueueBtn() {
+  refs.queueBtn.innerHTML = 'Remove from queue';
+  refs.queueBtn.setAttribute('data-action', 'remove');
+}
+function makeAddToWatchedBtn() {
+  refs.watchedBtn.innerHTML = 'Add to watched';
+  refs.watchedBtn.setAttribute('data-action', 'add');
+}
+function makeAddToQueueBtn() {
+  refs.queueBtn.innerHTML = 'Add to queue';
+  refs.queueBtn.setAttribute('data-action', 'add');
+}
+function checkWatchedBtnStatus() {
+  return refs.watchedBtn.getAttribute('data-action');
+}
+function checkQueueBtnStatus() {
+  return refs.queueBtn.getAttribute('data-action');
+}
+
+refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+refs.queueBtn.addEventListener('click', onQueueBtnClick)
+
+function onWatchedBtnClick() {
+  const dataActionStatus = checkWatchedBtnStatus();
+  console.log(dataActionStatus);
+  if (dataActionStatus !== 'add') {
+    makeRemoveFromWatchedBtn();
+    refs.watchedBtn.classList.add('active-btn');
+  }
+  if (dataActionStatus === 'remove') {
+    makeAddToWatchedBtn();
+    refs.watchedBtn.classList.remove('active-btn');
+  }
+}
+
+function onQueueBtnClick() {
+  const dataActionStatus = checkQueueBtnStatus();
+  console.log(dataActionStatus);
+  if (dataActionStatus !== 'add') {
+    makeRemoveFromQueueBtn();
+    refs.queueBtn.classList.add('active-btn');
+  }
+  if (dataActionStatus === 'remove') {
+    makeAddToQueueBtn();
+    refs.queueBtn.classList.remove('active-btn');
+  }
+}
+
+function getWatched() {
+  const savedMovies = localStorage.getItem('watched');
+  return savedMovies ? JSON.parse(savedMovies) : [];
+}
+function putWatched(array) {
+  localStorage.setItem('watched', JSON.stringify(array));
+}
+
+const addItem = (currentCard, array) => {
+  const filtered = array.filter(item => item.id !== currentCard.id);
+  return [...filtered, currentCard];
+};
+
+function addToWatched([item]) {
+  const parsedMovies = getWatched();
+  const ite = item;
+  const newArray = addItem(ite, parsedMovies);
+  putWatched(newArray);
+}
+
+const removeItem = (currentCard, array) => {
+  return array.filter(item => item.id !== currentCard.id);
+};
+
+function removeFromWatched([item]) {
+  const parsedMovies = getWatched();
+  const ite = item;
+  const newArray = removeItem(ite, parsedMovies);
+  putWatched(newArray);
+}
+
+function getWatched() {
+  const savedMovies = localStorage.getItem('watched');
+  return savedMovies ? JSON.parse(savedMovies) : [];
+}
+function putWatched(array) {
+  localStorage.setItem('watched', JSON.stringify(array));
+}
+
+function getQueue() {
+  const savedMovies = localStorage.getItem('queue');
+  return savedMovies ? JSON.parse(savedMovies) : [];
+}
+function putQueue(array) {
+  localStorage.setItem('queue', JSON.stringify(array));
+}
+
+function addToQueue([item]) {
+  const parsedMovies = getQueue();
+  const ite = item;
+  const newArray = addItem(ite, parsedMovies);
+  putQueue(newArray);
+}
+function removeFromQueue([item]) {
+  const parsedMovies = getQueue();
+  const ite = item;
+  const newArray = removeItem(ite, parsedMovies);
+  putQueue(newArray);
+}

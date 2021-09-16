@@ -1,11 +1,19 @@
 import refs from './refs';
+import { api, preparingData, getTrendingMovies } from './gallery';
+import makeMoviesMarkup from '../templates/movieList.hbs';
+import { resPagination } from './gallery';
+// import pagination from 'tui-pagination';
 
 refs.pageHome.addEventListener('click', onPageHome);
 refs.siteLogoList.addEventListener('click', onPageHome);
 refs.pageLibrary.addEventListener('click', onPageLibrary);
+refs.searchForm.addEventListener('submit', onSearch);
 
 function onPageHome(e) {
   e.preventDefault();
+  smthOk();
+  clearGalleryList();
+  getTrendingMovies();
   if (refs.pageHome.classList.contains('current')) {
     return;
   }
@@ -15,6 +23,7 @@ function onPageHome(e) {
 
 function onPageLibrary(e) {
   e.preventDefault();
+  smthOk();
   if (refs.pageLibrary.classList.contains('current')) {
     return;
   }
@@ -36,5 +45,58 @@ function changePage() {
 }
 
 function smthWrong() {
-  refs.smthWrong.classList.toggle('header-is-hidden');
+  refs.smthWrong.classList.remove('header-is-hidden');
+}
+
+function smthOk() {
+  refs.smthWrong.classList.add('header-is-hidden');
+}
+
+let input = '';
+
+function onSearch(e) {
+  e.preventDefault();
+  smthOk();
+  input = refs.searchForm.elements.search.value;
+  // console.log(input);
+  getMoviesByValue();
+  refs.searchForm.reset();
+}
+
+// let testData = '';
+
+function getMoviesByValue(q) {
+  api.q = input;
+  // api.galleryPage = paginationPage;
+  api
+    .fetchQuery()
+    .then(data => {
+      console.log(data);
+      // testData = data;
+      if (data.results.length !== 0) {
+        renderModalContent(data);
+        return;
+      }
+      smthWrong();
+      return;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+}
+
+// console.log('testData:', testData);
+
+function renderModalContent({ results }) {
+  const normilizedResults = results.map(movie => preparingData(movie));
+  // console.log(normilizedResults);
+  const markup = makeMoviesMarkup(normilizedResults);
+  refs.galleryList.innerHTML = markup;
+}
+
+function clearGalleryList() {
+  api.resetPage();
+  resPagination();
+  // instance.page = 1;
+  refs.galleryList.innerHTML = '';
 }

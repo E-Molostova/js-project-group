@@ -2,6 +2,9 @@ import ApiService from './api-service';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 // import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
+import pagination from 'tui-pagination';
+import emptyImg from '../images/not_found.jpg';
+// import Handlebars from 'handlebars';
 
 const api = new ApiService();
 let genres = [];
@@ -80,3 +83,48 @@ function preparingData(result) {
 //     console.log(data);
 //   });
 // };
+
+//---------------------- Lets pagination begin--------------------------------------
+
+const container = document.getElementById('tui-pagination-container');
+
+const options = {
+  totalItems: 0,
+  itemsPerPage: 20,
+  visiblePages: 7,
+  page: 0,
+  centerAlign: true,
+};
+
+const getTotalNumberForPagination = function () {
+  api
+    .fetchTrending()
+    .then(data => {
+      const num = data.total_results;
+      instance.reset(num);
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+};
+
+function onSwitchPage(e) {
+  console.log('switch' + e.page);
+  instance.page = e.page;
+  api.page = e.page;
+  refs.galleryList.innerHTML = '';
+  getTrendingMovies();
+}
+
+const instance = new pagination(container, options);
+
+instance.on('beforeMove', onSwitchPage);
+getTotalNumberForPagination();
+
+function resPagination() {
+  // instance.page = 1;
+  // options.page = 0;
+  instance.reset();
+}
+
+export { resPagination };
