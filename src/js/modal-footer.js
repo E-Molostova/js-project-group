@@ -73,3 +73,5 @@ function onMouseClick(e) {
     refs.modalFooter.classList.add('is-hidden');
   }
 }
+
+////////////////////spiner////////////////////////////////////
