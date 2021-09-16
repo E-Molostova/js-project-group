@@ -37,6 +37,7 @@
     margin-right: 10px;
 
     border-style: none;
+    cursor: pointer;
 
     background-color: $primary-bg-color;
 }
@@ -171,6 +172,13 @@
     border-radius: 5px;
 
     background: $primary-bg-color;
+    &:hover {
+        cursor: pointer;
+        border: none;
+        color: $header-text-color;
+        text-align: center;
+        background: $secondary-text-color;
+    }
 
     @media screen and (min-width: 1024px) {
         width: 136px;
