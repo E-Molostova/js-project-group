@@ -77,19 +77,19 @@ function closeModalEsc(evt) {
 
 // modal btns
 
-function removeFromWatchedBtn() {
+function makeRemoveFromWatchedBtn() {
   refs.watchedBtn.innerHTML = 'Remove from watched';
   refs.watchedBtn.setAttribute('data-action', 'remove');
 }
-function removeFromQueueBtn() {
+function makeRemoveFromQueueBtn() {
   refs.queueBtn.innerHTML = 'Remove from queue';
   refs.queueBtn.setAttribute('data-action', 'remove');
 }
-function addToWatchedBtn() {
+function makeAddToWatchedBtn() {
   refs.watchedBtn.innerHTML = 'Add to watched';
   refs.watchedBtn.setAttribute('data-action', 'add');
 }
-function addToQueueBtn() {
+function makeAddToQueueBtn() {
   refs.queueBtn.innerHTML = 'Add to queue';
   refs.queueBtn.setAttribute('data-action', 'add');
 }
@@ -98,4 +98,32 @@ function checkWatchedBtnStatus() {
 }
 function checkQueueBtnStatus() {
   return refs.queueBtn.getAttribute('data-action');
+}
+
+refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+refs.queueBtn.addEventListener('click', onQueueBtnClick)
+
+function onWatchedBtnClick() {
+  const dataActionStatus = checkWatchedBtnStatus();
+  console.log(dataActionStatus);
+  if (dataActionStatus !== 'add') {
+    makeRemoveFromWatchedBtn();
+    refs.watchedBtn.classList.add('active-btn');
+  }
+  if (dataActionStatus === 'remove') {
+    makeAddToWatchedBtn();
+    refs.watchedBtn.classList.remove('active-btn');
+  }
+}
+function onQueueBtnClick() {
+  const dataActionStatus = checkQueueBtnStatus();
+  console.log(dataActionStatus);
+  if (dataActionStatus !== 'add') {
+    makeRemoveFromQueueBtn();
+    refs.queueBtn.classList.add('active-btn');
+  }
+  if (dataActionStatus === 'remove') {
+    makeAddToQueueBtn();
+    refs.queueBtn.classList.remove('active-btn');
+  }
 }
