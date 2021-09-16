@@ -30,4 +30,4 @@ module.exports="/js-project-group/not_found.a188372d.jpg";
 },{"./gallery":"chxP","../templates/modalMovie.hbs":"BCtE","./refs":"VyiV"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/api-service"),require("./js/modal-footer"),require("./js/gallery"),require("./js/pagination"),require("./js/header_js"),require("./js/modalMovie");
 },{"./sass/main.scss":"clu1","./js/api-service":"hC31","./js/modal-footer":"hhFr","./js/gallery":"chxP","./js/pagination":"o8lo","./js/header_js":"tfh6","./js/modalMovie":"MbNB"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-group/src.c92ae7ad.js.map
+//# sourceMappingURL=/js-project-group/src.bb574bce.js.map
