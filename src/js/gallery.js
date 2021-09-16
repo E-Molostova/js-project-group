@@ -121,10 +121,10 @@ const instance = new pagination(container, options);
 instance.on('beforeMove', onSwitchPage);
 getTotalNumberForPagination();
 
-function resP() {
+function resPagination() {
   // instance.page = 1;
   // options.page = 0;
   instance.reset();
 }
 
-export { resP };
+export { resPagination };
