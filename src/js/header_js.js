@@ -1,6 +1,8 @@
 import refs from './refs';
 import { api, preparingData, getTrendingMovies } from './gallery';
 import makeMoviesMarkup from '../templates/movieList.hbs';
+import { resP } from './gallery';
+// import pagination from 'tui-pagination';
 
 refs.pageHome.addEventListener('click', onPageHome);
 refs.siteLogoList.addEventListener('click', onPageHome);
@@ -93,5 +95,8 @@ function renderModalContent({ results }) {
 }
 
 function clearGalleryList() {
+  api.resetPage();
+  resP();
+  // instance.page = 1;
   refs.galleryList.innerHTML = '';
 }
