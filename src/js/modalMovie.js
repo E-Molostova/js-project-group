@@ -83,183 +83,117 @@ function closeModalEsc(evt) {
   return;
 }
 
-const checkId = (i, p) => {
-  p.forEach(element => {
-    if (element.id !== i.id) {
-      renewSavedMovies.push(element);
-    }
-  });
-  renewSavedMovies.push(i);
-};
+
+// modal btns
+
+function makeRemoveFromWatchedBtn() {
+  refs.watchedBtn.innerHTML = 'Remove from watched';
+  refs.watchedBtn.setAttribute('data-action', 'remove');
+}
+function makeRemoveFromQueueBtn() {
+  refs.queueBtn.innerHTML = 'Remove from queue';
+  refs.queueBtn.setAttribute('data-action', 'remove');
+}
+function makeAddToWatchedBtn() {
+  refs.watchedBtn.innerHTML = 'Add to watched';
+  refs.watchedBtn.setAttribute('data-action', 'add');
+}
+function makeAddToQueueBtn() {
+  refs.queueBtn.innerHTML = 'Add to queue';
+  refs.queueBtn.setAttribute('data-action', 'add');
+}
+function checkWatchedBtnStatus() {
+  return refs.watchedBtn.getAttribute('data-action');
+}
+function checkQueueBtnStatus() {
+  return refs.queueBtn.getAttribute('data-action');
+}
+
+refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
+refs.queueBtn.addEventListener('click', onQueueBtnClick)
+
+function onWatchedBtnClick() {
+  const dataActionStatus = checkWatchedBtnStatus();
+  console.log(dataActionStatus);
+  if (dataActionStatus !== 'add') {
+    makeRemoveFromWatchedBtn();
+    refs.watchedBtn.classList.add('active-btn');
+  }
+  if (dataActionStatus === 'remove') {
+    makeAddToWatchedBtn();
+    refs.watchedBtn.classList.remove('active-btn');
+  }
+}
+
+function onQueueBtnClick() {
+  const dataActionStatus = checkQueueBtnStatus();
+  console.log(dataActionStatus);
+  if (dataActionStatus !== 'add') {
+    makeRemoveFromQueueBtn();
+    refs.queueBtn.classList.add('active-btn');
+  }
+  if (dataActionStatus === 'remove') {
+    makeAddToQueueBtn();
+    refs.queueBtn.classList.remove('active-btn');
+  }
+}
 
 function getWatched() {
   const savedMovies = localStorage.getItem('watched');
-  return JSON.parse(savedMovies);
+  return savedMovies ? JSON.parse(savedMovies) : [];
 }
-function putWatched() {
-  localStorage.removeItem('watched');
-  localStorage.setItem('watched', JSON.stringify(renewSavedMovies));
-  renewSavedMovies = [];
+function putWatched(array) {
+  localStorage.setItem('watched', JSON.stringify(array));
 }
+
+const addItem = (currentCard, array) => {
+  const filtered = array.filter(item => item.id !== currentCard.id);
+  return [...filtered, currentCard];
+};
+
+function addToWatched([item]) {
+  const parsedMovies = getWatched();
+  const ite = item;
+  const newArray = addItem(ite, parsedMovies);
+  putWatched(newArray);
+}
+
+const removeItem = (currentCard, array) => {
+  return array.filter(item => item.id !== currentCard.id);
+};
+
+function removeFromWatched([item]) {
+  const parsedMovies = getWatched();
+  const ite = item;
+  const newArray = removeItem(ite, parsedMovies);
+  putWatched(newArray);
+}
+
+function getWatched() {
+  const savedMovies = localStorage.getItem('watched');
+  return savedMovies ? JSON.parse(savedMovies) : [];
+}
+function putWatched(array) {
+  localStorage.setItem('watched', JSON.stringify(array));
+}
+
 function getQueue() {
   const savedMovies = localStorage.getItem('queue');
-  return JSON.parse(savedMovies);
+  return savedMovies ? JSON.parse(savedMovies) : [];
 }
-function putQueue() {
-  localStorage.removeItem('queue');
-  localStorage.setItem('queue', JSON.stringify(renewSavedMovies));
-  renewSavedMovies = [];
+function putQueue(array) {
+  localStorage.setItem('queue', JSON.stringify(array));
 }
 
 function addToQueue([item]) {
   const parsedMovies = getQueue();
   const ite = item;
-  checkId(ite, parsedMovies);
-  putQueue();
+  const newArray = addItem(ite, parsedMovies);
+  putQueue(newArray);
 }
-
 function removeFromQueue([item]) {
   const parsedMovies = getQueue();
   const ite = item;
-  checkIdInLS(ite, parsedMovies);
-  putQueue();
+  const newArray = removeItem(ite, parsedMovies);
+  putQueue(newArray);
 }
-
-function addToWatched([item]) {
-  // const savedMovies = localStorage.getItem('watched');
-  // const parsedMovies = JSON.parse(savedMovies);
-  const parsedMovies = getWatched();
-  const ite = item;
-  checkId(ite, parsedMovies);
-  putWatched();
-  // localStorage.removeItem('watched');
-  // localStorage.setItem('watched', JSON.stringify(renewSavedMovies));
-  // renewSavedMovies = [];
-}
-
-const checkIdInLS = (i, p) => {
-  p.forEach(element => {
-    if (element.id !== i.id) {
-      renewSavedMovies.push(element);
-    }
-  });
-};
-function removeFromWatched([item]) {
-  // const savedMovies = localStorage.getItem('watched');
-  // const parsedMovies = JSON.parse(savedMovies);
-  const parsedMovies = getWatched();
-  const ite = item;
-  checkIdInLS(ite, parsedMovies);
-  putWatched();
-  // console.log(renewSavedMovies);
-  // localStorage.removeItem('watched');
-  // localStorage.setItem('watched', JSON.stringify(renewSavedMovies));
-  // renewSavedMovies = [];
-}
-
-// function addToQueue(item) {
-//   const savedMovies = localStorage.getItem('queue');
-//   const parsedMovies = JSON.parse(savedMovies);
-//   const renewSavedMovies = [...parsedMovies, ...item];
-//   localStorage.removeItem('queue');
-//   localStorage.setItem('queue', JSON.stringify(renewSavedMovies));
-// }
-
-const queue = [
-  {
-    adult: false,
-    backdrop_path: '/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg',
-    belongs_to_collection: null,
-    budget: 63000000,
-    genres: [
-      {
-        id: 18,
-        name: 'Drama',
-      },
-    ],
-    homepage: '',
-    id: 550,
-    imdb_id: 'tt0137523',
-    original_language: 'en',
-    original_title: 'Fight Club',
-    overview:
-      'A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground "fight clubs" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.',
-    popularity: 0.5,
-    poster_path: null,
-    production_companies: [
-      {
-        id: 508,
-        logo_path: '/7PzJdsLGlR7oW4J0J5Xcd0pHGRg.png',
-        name: 'Regency Enterprises',
-        origin_country: 'US',
-      },
-      {
-        id: 711,
-        logo_path: null,
-        name: 'Fox 2000 Pictures',
-        origin_country: '',
-      },
-      {
-        id: 20555,
-        logo_path: null,
-        name: 'Taurus Film',
-        origin_country: '',
-      },
-      {
-        id: 54050,
-        logo_path: null,
-        name: 'Linson Films',
-        origin_country: '',
-      },
-      {
-        id: 54051,
-        logo_path: null,
-        name: 'Atman Entertainment',
-        origin_country: '',
-      },
-      {
-        id: 54052,
-        logo_path: null,
-        name: 'Knickerbocker Films',
-        origin_country: '',
-      },
-      {
-        id: 25,
-        logo_path: '/qZCc1lty5FzX30aOCVRBLzaVmcp.png',
-        name: '20th Century Fox',
-        origin_country: 'US',
-      },
-    ],
-    production_countries: [
-      {
-        iso_3166_1: 'US',
-        name: 'United States of America',
-      },
-    ],
-    release_date: '1999-10-12',
-    revenue: 100853753,
-    runtime: 139,
-    spoken_languages: [
-      {
-        iso_639_1: 'en',
-        name: 'English',
-      },
-    ],
-    status: 'Released',
-    tagline: "How much can you know about yourself if you've never been in a fight?",
-    title: 'Fight Club',
-    video: false,
-    vote_average: 7.8,
-    vote_count: 3439,
-  },
-];
-// localStorage.removeItem('watched');
-// localStorage.setItem('watched', JSON.stringify(queue));
-
-// const savedSettings = localStorage.getItem('watched');
-// const parsedSettings = JSON.parse(savedSettings);
-
-// console.log(parsedSettings);
-// const savedMovies = localStorage.getItem('watched');
-// const parsedMovies = JSON.parse(savedMovies);
-// console.log(parsedMovies);
