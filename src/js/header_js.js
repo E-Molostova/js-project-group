@@ -52,22 +52,23 @@ function smthOk() {
   refs.smthWrong.classList.add('header-is-hidden');
 }
 
-let input = '';
+// let input = '';
 
 function onSearch(e) {
   e.preventDefault();
   smthOk();
-  input = refs.searchForm.elements.search.value;
+  spinerStyleToggle();
+  const input = refs.searchForm.elements.search.value;
   // console.log(input);
 
-  getMoviesByValue();
+  getMoviesByValue(input);
   getTotalNumberForPaginationSearch();
   refs.searchForm.reset();
 }
 
 // let testData = '';
 
-function getMoviesByValue(q) {
+function getMoviesByValue(input) {
   api.q = input;
   // api.galleryPage = paginationPage;
   api
@@ -77,13 +78,17 @@ function getMoviesByValue(q) {
       // testData = data;
       if (data.results.length !== 0) {
         renderModalContent(data);
+        spinerStyleToggle();
         return;
       }
       smthWrong();
+      spinerStyleToggle();
       return;
     })
     .catch(err => {
       console.log(err.message);
+      spinerStyleToggle();
+      smthWrong();
     });
 }
 
@@ -101,4 +106,9 @@ function clearGalleryList() {
   api.resetPage();
   resPagination();
   refs.galleryList.innerHTML = '';
+}
+
+function spinerStyleToggle() {
+  refs.searchSvg.classList.toggle('header-is-hidden');
+  refs.searchSpin.classList.toggle('header-is-hidden');
 }
