@@ -74,3 +74,28 @@ function closeModalEsc(evt) {
   }
   return;
 }
+
+// modal btns
+
+function removeFromWatchedBtn() {
+  refs.watchedBtn.innerHTML = 'Remove from watched';
+  refs.watchedBtn.setAttribute('data-action', 'remove');
+}
+function removeFromQueueBtn() {
+  refs.queueBtn.innerHTML = 'Remove from queue';
+  refs.queueBtn.setAttribute('data-action', 'remove');
+}
+function addToWatchedBtn() {
+  refs.watchedBtn.innerHTML = 'Add to watched';
+  refs.watchedBtn.setAttribute('data-action', 'add');
+}
+function addToQueueBtn() {
+  refs.queueBtn.innerHTML = 'Add to queue';
+  refs.queueBtn.setAttribute('data-action', 'add');
+}
+function checkWatchedBtnStatus() {
+  return refs.watchedBtn.getAttribute('data-action');
+}
+function checkQueueBtnStatus() {
+  return refs.queueBtn.getAttribute('data-action');
+}
