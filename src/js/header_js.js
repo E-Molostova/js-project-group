@@ -2,6 +2,7 @@ import refs from './refs';
 import { api, preparingData, getTrendingMovies } from './gallery';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import { resPagination, getTotalNumberForPaginationSearch } from './gallery';
+import { getTotalNumberForPagination } from './gallery';
 // import pagination from 'tui-pagination';
 
 refs.pageHome.addEventListener('click', onPageHome);
@@ -11,6 +12,7 @@ refs.searchForm.addEventListener('submit', onSearch);
 
 function onPageHome(e) {
   e.preventDefault();
+  getTotalNumberForPagination();
   smthOk();
   clearGalleryList();
   getTrendingMovies();
@@ -104,6 +106,7 @@ function renderModalContent({ results }) {
 }
 
 function clearGalleryList() {
+  api.query = '';
   api.resetPage();
   resPagination();
   refs.galleryList.innerHTML = '';
