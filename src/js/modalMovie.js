@@ -1,7 +1,8 @@
 import { api, preparingData } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
-
+let currentMov = [];
+let renewSavedMovies = [];
 const bodyRef = document.querySelector('body');
 // console.log(bodyRef);
 
@@ -13,7 +14,7 @@ refs.backdrop.addEventListener('click', closeModalBackdropClick);
 let movie = null;
 async function openModal(evt) {
   let movieId = evt.target.closest('LI').id;
-  console.log(movieId);
+  // console.log(movieId);
   clearModalContent();
   showModalContent();
   let movie = await getMoviesById(movieId);
@@ -30,7 +31,7 @@ function getMoviesById(id) {
   api
     .fetchMovieById()
     .then(data => {
-      console.log(data);
+      // console.log(data);
       renderModalContent(data);
     })
     .catch(err => {
@@ -40,7 +41,10 @@ function getMoviesById(id) {
 
 function renderModalContent(results) {
   const normilizedResult = preparingData(results);
-  console.log(normilizedResult);
+  // console.log(normilizedResult);
+  currentMov = [];
+  currentMov.push(normilizedResult);
+  console.log(currentMov);
   const markup = makeMoviesById(normilizedResult);
   refs.modalContent.innerHTML = markup;
 }
@@ -59,6 +63,10 @@ function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', closeModalEsc);
   bodyRef.classList.toggle('no-scroll');
+  addToWatched(currentMov);
+  // addToQueue(currentMov);
+  // removeFromWatched(currentMov);
+  console.log(currentMov);
 }
 
 function closeModalBackdropClick(evt) {
@@ -74,6 +82,7 @@ function closeModalEsc(evt) {
   }
   return;
 }
+
 
 // modal btns
 
@@ -115,6 +124,7 @@ function onWatchedBtnClick() {
     refs.watchedBtn.classList.remove('active-btn');
   }
 }
+
 function onQueueBtnClick() {
   const dataActionStatus = checkQueueBtnStatus();
   console.log(dataActionStatus);
@@ -126,4 +136,64 @@ function onQueueBtnClick() {
     makeAddToQueueBtn();
     refs.queueBtn.classList.remove('active-btn');
   }
+}
+
+function getWatched() {
+  const savedMovies = localStorage.getItem('watched');
+  return savedMovies ? JSON.parse(savedMovies) : [];
+}
+function putWatched(array) {
+  localStorage.setItem('watched', JSON.stringify(array));
+}
+
+const addItem = (currentCard, array) => {
+  const filtered = array.filter(item => item.id !== currentCard.id);
+  return [...filtered, currentCard];
+};
+
+function addToWatched([item]) {
+  const parsedMovies = getWatched();
+  const ite = item;
+  const newArray = addItem(ite, parsedMovies);
+  putWatched(newArray);
+}
+
+const removeItem = (currentCard, array) => {
+  return array.filter(item => item.id !== currentCard.id);
+};
+
+function removeFromWatched([item]) {
+  const parsedMovies = getWatched();
+  const ite = item;
+  const newArray = removeItem(ite, parsedMovies);
+  putWatched(newArray);
+}
+
+function getWatched() {
+  const savedMovies = localStorage.getItem('watched');
+  return savedMovies ? JSON.parse(savedMovies) : [];
+}
+function putWatched(array) {
+  localStorage.setItem('watched', JSON.stringify(array));
+}
+
+function getQueue() {
+  const savedMovies = localStorage.getItem('queue');
+  return savedMovies ? JSON.parse(savedMovies) : [];
+}
+function putQueue(array) {
+  localStorage.setItem('queue', JSON.stringify(array));
+}
+
+function addToQueue([item]) {
+  const parsedMovies = getQueue();
+  const ite = item;
+  const newArray = addItem(ite, parsedMovies);
+  putQueue(newArray);
+}
+function removeFromQueue([item]) {
+  const parsedMovies = getQueue();
+  const ite = item;
+  const newArray = removeItem(ite, parsedMovies);
+  putQueue(newArray);
 }
