@@ -139,6 +139,7 @@ const instance = new pagination(container, options);
 
 instance.on('beforeMove', onSwitchPage);
 getTotalNumberForPagination();
+export { getTotalNumberForPagination };
 
 function resPagination() {
   instance.reset();
