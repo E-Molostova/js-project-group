@@ -12,13 +12,9 @@ refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
 async function openModal(evt) {
   let movieId = evt.target.closest('LI').id;
-  // if (!movieId) return
   await getMoviesById(movieId);
   console.log(movieId);
-  // console.log(currentMov);
   clearModalContent();
-  // showModalContent();
-  // checkInLS(currentMov);
 }
 
 function showModalContent() {
@@ -42,10 +38,12 @@ function getMoviesById(id) {
     });
 }
 
+
 // const btnRefs = {
 //   watchedBtnRef: null,
 //   queueBtnRef: null
 // };
+
 
 let watchedBtnRef;
 let queueBtnRef;
@@ -61,10 +59,6 @@ function renderModalContent(results) {
   queueBtnRef.addEventListener('click', onQueueBtnClick);
 }
 
-// function preventAction(evt) {
-//   evt.preventDefault();
-// }
-
 function clearModalContent() {
   api.movId = 0;
   refs.modalContent.innerHTML = '';
@@ -75,12 +69,6 @@ function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', closeModalEsc);
   bodyRef.classList.toggle('no-scroll');
-  // addToWatched(currentMov);
-  // addToQueue(currentMov);
-  // removeFromWatched(currentMov);
-  // removeFromQueue(currentMov);
-  // console.log(currentMov);
-  // checkInLS(currentMov);
 }
 
 function closeModalBackdropClick(evt) {
@@ -123,9 +111,6 @@ function checkQueueBtnStatus() {
   return queueBtnRef.getAttribute('data-action');
 }
 
-// refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
-// refs.queueBtn.addEventListener('click', onQueueBtnClick);
-
 function onWatchedBtnClick() {
   const dataActionStatus = checkWatchedBtnStatus();
   console.log(dataActionStatus);
@@ -155,14 +140,6 @@ function onQueueBtnClick() {
     queueBtnRef.classList.remove('active-btn');
   }
 }
-
-// function currentWatchBtnStatus(currentMov) {
-//   if()
-// }
-
-// function currentQueueBtnStatus() {
-
-// }
 
 function getWatched() {
   const savedMovies = localStorage.getItem('watched');
@@ -196,10 +173,6 @@ function removeFromWatched(item) {
   putWatched(newArray);
 }
 
-// function getWatched() {
-//   const savedMovies = localStorage.getItem('watched');
-//   return savedMovies ? JSON.parse(savedMovies) : [];
-// }
 function putWatched(array) {
   localStorage.setItem('watched', JSON.stringify(array));
 }
