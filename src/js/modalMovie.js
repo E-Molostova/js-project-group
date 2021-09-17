@@ -12,13 +12,13 @@ refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
 async function openModal(evt) {
   let movieId = evt.target.closest('LI').id;
-  // if (evt.currentTarget !== evt.target) return false
+  // if (!movieId) return
   await getMoviesById(movieId);
   console.log(movieId);
-  console.log(currentMov);
-  // checkInLS(currentMov);
+  // console.log(currentMov);
   clearModalContent();
-  showModalContent();
+  // showModalContent();
+  // checkInLS(currentMov);
 }
 
 function showModalContent() {
@@ -33,11 +33,20 @@ function getMoviesById(id) {
     .fetchMovieById()
     .then(data => {
       renderModalContent(data);
+      // clearModalContent();
+      showModalContent();
+      checkInLS(currentMov);
     })
     .catch(err => {
       console.log(err.message);
     });
 }
+
+// const btnRefs = {
+//   watchedBtnRef: null,
+//   queueBtnRef: null
+// };
+
 
 let watchedBtnRef;
 let queueBtnRef;
@@ -100,6 +109,7 @@ function makeRemoveFromQueueBtn() {
   queueBtnRef.setAttribute('data-action', 'remove');
 }
 function makeAddToWatchedBtn() {
+  console.log(watchedBtnRef);
   watchedBtnRef.innerHTML = 'Add to watched';
   watchedBtnRef.setAttribute('data-action', 'add');
 }
@@ -219,23 +229,22 @@ function removeFromQueue(item) {
 const checkInLS = currentCard => {
   const watched = getWatched();
   // console.log(watched);
-  watched.some(item => {
-    if (item.id === currentCard.id) {
-      makeRemoveFromWatchedBtn();
-      console.log('Светится первая кнопка');
-    } else {
-      makeAddToWatchedBtn();
-    }
-  });
+  const isInWatched = watched.some(item => item.id === currentCard.id);
+  if (isInWatched) {
+    makeRemoveFromWatchedBtn();
+    console.log('Светится первая кнопка');
+  } else {
+    makeAddToWatchedBtn();
+  }
+
   const queue = getQueue();
-  queue.some(item => {
-    if (item.id === currentCard.id) {
-      makeRemoveFromQueueBtn();
-      console.log('Светится вторая кнопка');
-    } else {
-      makeAddToQueueBtn();
-    }
-  });
+  const isInQueue = queue.some(item => item.id === currentCard.id);
+  if (isInQueue) {
+    makeRemoveFromQueueBtn();
+    console.log('Светится вторая кнопка');
+  } else {
+    makeAddToQueueBtn();
+  }
 };
 
 export { getWatched, getQueue }
