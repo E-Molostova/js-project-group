@@ -126,11 +126,10 @@ const getTotalNumberForPaginationSearch = function () {
 
 function onSwitchPage(e) {
   console.log('switch' + e.page);
-  // instance.page = e.page;
   api.page = e.page;
   refs.galleryList.innerHTML = '';
   if (api.query) {
-    getMoviesByValue();
+    getMoviesByValue(api.query);
     spinerStyleToggle();
   } else getTrendingMovies();
 }

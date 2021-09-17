@@ -54,24 +54,24 @@ function smthOk() {
   refs.smthWrong.classList.add('header-is-hidden');
 }
 
-let input = '';
+// let input = '';
 
 function onSearch(e) {
   e.preventDefault();
   smthOk();
   spinerStyleToggle();
   api.resetPage();
-  input = refs.searchForm.elements.search.value;
+  const input = refs.searchForm.elements.search.value;
   // console.log(input);
 
-  getMoviesByValue();
+  getMoviesByValue(input);
   getTotalNumberForPaginationSearch();
   refs.searchForm.reset();
 }
 
 // let testData = '';
 
-function getMoviesByValue() {
+function getMoviesByValue(input) {
   api.q = input;
   // api.galleryPage = paginationPage;
   api
