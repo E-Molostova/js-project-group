@@ -1,4 +1,4 @@
-import { api, preparingData } from './gallery';
+import { api, preparingData, paginate } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
 
@@ -46,7 +46,6 @@ function getMoviesById(id) {
 //   watchedBtnRef: null,
 //   queueBtnRef: null
 // };
-
 
 let watchedBtnRef;
 let queueBtnRef;
@@ -247,4 +246,4 @@ const checkInLS = currentCard => {
   }
 };
 
-export { getWatched, getQueue }
+export { getWatched, getQueue };

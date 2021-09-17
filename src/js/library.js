@@ -3,7 +3,9 @@ import refs from './refs';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import { paginationUnvisible } from './header_js';
 import makeDummy from '../templates/dummy.hbs';
-export { lib };
+import { paginate, api } from './gallery';
+export { lib, getQueue, renderLibraryContent, getWatched };
+// export {};
 
 function lib() {
   refs.btnHome.classList.add('active');
@@ -22,15 +24,17 @@ function renderLibraryContent(array) {
     markup = makeDummy();
     refs.galleryList.innerHTML = markup;
     paginationUnvisible();
+    const arrayP = paginate(array, 20, api.page);
     console.log('in if', markup);
   } else {
-    markup = makeMoviesMarkup(array);
-    console.log('after if', markup);
+    const arrayP = paginate(array, 20, api.page);
+    markup = makeMoviesMarkup(arrayP);
+    // console.log('after if', markup);
     refs.galleryList.innerHTML = markup;
   }
-  if (array.length <= 21) {
-    paginationUnvisible();
-  }
+  // if (array.length <= 21) {
+  //   paginationUnvisible();
+  // }
 }
 
 refs.btnHome.addEventListener('click', onLibWatchBtn);

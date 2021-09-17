@@ -1,13 +1,11 @@
 import ApiService from './api-service';
 import makeMoviesMarkup from '../templates/movieList.hbs';
-// import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
 import pagination from 'tui-pagination';
 import emptyImg from '../images/not_found.jpg';
-import { getMoviesByValue, spinerStyleToggle } from './header_js';
-// import Handlebars from 'handlebars';
-export { getTotalNumberForPaginationSearch };
-export { resPagination };
+import { getMoviesByValue, spinerStyleToggle, paginationUnvisible } from './header_js';
+import { renderLibraryContent, getQueue, getWatched } from './library';
+export { getTotalNumberForPaginationSearch, paginate, resPagination, getTotalNumberForPagination };
 
 const api = new ApiService();
 let genres = [];
@@ -92,7 +90,6 @@ function preparingData(result) {
 const container = document.getElementById('tui-pagination-container');
 
 const options = {
-  totalItems: 0,
   itemsPerPage: 20,
   visiblePages: 7,
   page: 0,
@@ -112,7 +109,6 @@ const getTotalNumberForPagination = function () {
 };
 
 const getTotalNumberForPaginationSearch = function () {
-  console.log('begin');
   api
     .fetchQuery()
     .then(data => {
@@ -124,22 +120,40 @@ const getTotalNumberForPaginationSearch = function () {
     });
 };
 
+function paginate(array, page_size, page_number) {
+  if (array.length < 21) {
+    paginationUnvisible();
+    instance.reset(array.length);
+    return array.slice((page_number - 1) * page_size, page_number * page_size);
+  } else {
+    refs.pagination.classList.remove('header-is-hidden');
+    instance.reset(array.length);
+    return array.slice((page_number - 1) * page_size, page_number * page_size);
+  }
+}
+
+function resPagination() {
+  instance.reset();
+}
+
 function onSwitchPage(e) {
-  console.log('switch' + e.page);
   api.page = e.page;
   refs.galleryList.innerHTML = '';
-  if (api.query) {
+  if (refs.btnHome.classList.contains('active') && refs.pageLibrary.classList.contains('current')) {
+    renderLibraryContent(getWatched());
+  } else if (
+    refs.btnLibrary.classList.contains('active') &&
+    refs.pageLibrary.classList.contains('current')
+  ) {
+    renderLibraryContent(getQueue());
+  } else if (api.query) {
     getMoviesByValue(api.query);
     spinerStyleToggle();
   } else getTrendingMovies();
+  api.resetPage();
 }
 
 const instance = new pagination(container, options);
 
 instance.on('beforeMove', onSwitchPage);
 getTotalNumberForPagination();
-export { getTotalNumberForPagination };
-
-function resPagination() {
-  instance.reset();
-}
