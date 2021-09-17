@@ -6,6 +6,8 @@ import makeDummy from '../templates/dummy.hbs';
 export { lib };
 
 function lib() {
+  refs.btnHome.classList.add('active');
+  refs.btnLibrary.classList.remove('active');
   let array = getWatched();
   //   let array = [];
 

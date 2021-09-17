@@ -20,6 +20,7 @@ function onPageHome(e) {
   clearGalleryList();
   paginationVisible();
   getTrendingMovies();
+
   if (refs.pageHome.classList.contains('current')) {
     return;
   }
