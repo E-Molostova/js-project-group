@@ -21,6 +21,8 @@ const refs = {
   galleryList: document.querySelector('.js-gallery'),
   searchSvg: document.querySelector('.serach-use'),
   searchSpin: document.querySelector('.spinner'),
+  pagination: document.getElementById('tui-pagination-container'),
+  dummy: document.querySelector('.js-dummy'),
 };
 
 export default refs;

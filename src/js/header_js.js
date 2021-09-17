@@ -3,6 +3,9 @@ import { api, preparingData, getTrendingMovies } from './gallery';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import { resPagination, getTotalNumberForPaginationSearch } from './gallery';
 // import pagination from 'tui-pagination';
+import { lib } from './library';
+
+export { getMoviesByValue, spinerStyleToggle, paginationVisible, paginationUnvisible };
 
 refs.pageHome.addEventListener('click', onPageHome);
 refs.siteLogoList.addEventListener('click', onPageHome);
@@ -13,6 +16,7 @@ function onPageHome(e) {
   e.preventDefault();
   smthOk();
   clearGalleryList();
+  paginationVisible();
   getTrendingMovies();
   if (refs.pageHome.classList.contains('current')) {
     return;
@@ -24,6 +28,8 @@ function onPageHome(e) {
 function onPageLibrary(e) {
   e.preventDefault();
   smthOk();
+
+  lib();
   if (refs.pageLibrary.classList.contains('current')) {
     return;
   }
@@ -93,7 +99,6 @@ function getMoviesByValue() {
     });
 }
 
-export { getMoviesByValue, spinerStyleToggle };
 // console.log('testData:', testData);
 
 function renderModalContent({ results }) {
@@ -112,4 +117,12 @@ function clearGalleryList() {
 function spinerStyleToggle() {
   refs.searchSvg.classList.toggle('header-is-hidden');
   refs.searchSpin.classList.toggle('header-is-hidden');
+}
+
+function paginationUnvisible() {
+  refs.pagination.classList.add('header-is-hidden');
+}
+
+function paginationVisible() {
+  refs.pagination.classList.remove('header-is-hidden');
 }

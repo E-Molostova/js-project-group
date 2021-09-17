@@ -5,3 +5,4 @@ import './js/gallery';
 import './js/pagination';
 import './js/header_js';
 import './js/modalMovie';
+import './js/library';
