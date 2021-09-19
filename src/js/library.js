@@ -5,7 +5,7 @@ import { paginationUnvisible } from './header_js';
 import makeDummy from '../templates/dummy.hbs';
 
 import { paginate, api } from './gallery';
-export { lib, getQueue, renderLibraryContent, getWatched };
+export { lib, getQueue, renderLibraryContent, getWatched, onLibWatchBtn, onLibQueueBtn };
 // export {};
 
 function lib() {

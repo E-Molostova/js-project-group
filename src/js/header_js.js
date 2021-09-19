@@ -72,6 +72,7 @@ function onSearch(e) {
   smthOk();
   spinerStyleToggle();
   api.resetPage();
+  paginationVisible();
   const input = refs.searchForm.elements.search.value;
   // console.log(input);
 
