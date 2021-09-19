@@ -34,4 +34,4 @@ module.exports="/js-project-group/not_found.a188372d.jpg";
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/api-service"),require("./js/modal-footer"),require("./js/gallery"),require("./js/pagination"),require("./js/header_js"),require("./js/modalMovie"),require("./js/library");
 },{"./sass/main.scss":"clu1","./js/api-service":"hC31","./js/modal-footer":"hhFr","./js/gallery":"chxP","./js/pagination":"o8lo","./js/header_js":"tfh6","./js/modalMovie":"MbNB","./js/library":"BfNj"}]},{},["Focm"], null)
-//# sourceMappingURL=/js-project-group/src.e1d02313.js.map
+//# sourceMappingURL=/js-project-group/src.703441da.js.map
