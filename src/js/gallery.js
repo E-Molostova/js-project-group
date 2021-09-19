@@ -113,7 +113,8 @@ const getTotalNumberForPaginationSearch = function () {
     .fetchQuery()
     .then(data => {
       const num = data.total_results;
-      instance.reset(num);
+      if (num > 21) instance.reset(num);
+      else paginationUnvisible();
     })
     .catch(err => {
       console.log(err.message);
