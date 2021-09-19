@@ -11,9 +11,9 @@ refs.modalMovieWindowClsBtn.addEventListener('click', closeModal);
 refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
 async function openModal(evt) {
-  let movieId = evt.target.closest('LI').id;
+  if (evt.target.parentNode !== evt.target.closest('LI')) return
+  const movieId = evt.target.closest('LI').id;
   await getMoviesById(movieId);
-  console.log(movieId);
   clearModalContent();
 }
 
@@ -29,7 +29,6 @@ function getMoviesById(id) {
     .fetchMovieById()
     .then(data => {
       renderModalContent(data);
-      // clearModalContent();
       showModalContent();
       checkInLS(currentMov);
     })
@@ -37,13 +36,6 @@ function getMoviesById(id) {
       console.log(err.message);
     });
 }
-
-
-// const btnRefs = {
-//   watchedBtnRef: null,
-//   queueBtnRef: null
-// };
-
 
 let watchedBtnRef;
 let queueBtnRef;
@@ -86,7 +78,6 @@ function closeModalEsc(evt) {
 }
 
 // modal btns
-
 function makeRemoveFromWatchedBtn() {
   watchedBtnRef.innerHTML = 'Remove from watched';
   watchedBtnRef.setAttribute('data-action', 'remove');
