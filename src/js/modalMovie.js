@@ -1,4 +1,4 @@
-import { api, preparingData } from './gallery';
+import { api, preparingData, paginate } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
 import { onLibWatchBtn, onLibQueueBtn } from './library';
@@ -12,9 +12,9 @@ refs.modalMovieWindowClsBtn.addEventListener('click', closeModal);
 refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
 async function openModal(evt) {
-  let movieId = evt.target.closest('LI').id;
+  if (evt.target.parentNode !== evt.target.closest('LI')) return
+  const movieId = evt.target.closest('LI').id;
   await getMoviesById(movieId);
-  console.log(movieId);
   clearModalContent();
 }
 
@@ -30,7 +30,6 @@ function getMoviesById(id) {
     .fetchMovieById()
     .then(data => {
       renderModalContent(data);
-      // clearModalContent();
       showModalContent();
       checkInLS(currentMov);
     })
@@ -90,14 +89,15 @@ function closeModalEsc(evt) {
 }
 
 // modal btns
-
 function makeRemoveFromWatchedBtn() {
   watchedBtnRef.innerHTML = 'Remove from watched';
   watchedBtnRef.setAttribute('data-action', 'remove');
+  watchedBtnRef.classList.add('active-btn');
 }
 function makeRemoveFromQueueBtn() {
   queueBtnRef.innerHTML = 'Remove from queue';
   queueBtnRef.setAttribute('data-action', 'remove');
+  queueBtnRef.classList.add('active-btn');
 }
 function makeAddToWatchedBtn() {
   console.log(watchedBtnRef);
