@@ -1,4 +1,4 @@
-export default class ApiService {
+class ApiService {
   #API_KEY = '43599aecc4a107996f3426684f8b9f50';
   BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -95,3 +95,5 @@ export default class ApiService {
 // https://api.themoviedb.org/3/trending/movie/week
 // https://api.themoviedb.org/3/movie/550?api_key=43599aecc4a107996f3426684f8b9f50
 // https://api.themoviedb.org/3/search/movie?api_key=43599aecc4a107996f3426684f8b9f50&language=en-US&query=war%20of%20nations&page=1&include_adult=false&region=ukraine&year=2021
+const api = new ApiService();
+export default api;

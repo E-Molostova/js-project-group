@@ -1,4 +1,4 @@
-import ApiService from './api-service';
+import api from './api-service';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import refs from './refs';
 import pagination from 'tui-pagination';
@@ -7,7 +7,7 @@ import { getMoviesByValue, spinerStyleToggle, paginationUnvisible } from './head
 import { renderLibraryContent, getQueue, getWatched } from './library';
 export { getTotalNumberForPaginationSearch, paginate, resPagination, getTotalNumberForPagination };
 
-const api = new ApiService();
+// const api = new ApiService();
 let genres = [];
 const fetchGenres = () => {
   api.fetchGenres().then(data => {

@@ -1,5 +1,7 @@
 import refs from './refs';
-import { api, preparingData, getTrendingMovies } from './gallery';
+import { preparingData, getTrendingMovies } from './gallery';
+// import { api, preparingData, getTrendingMovies } from './gallery';
+import api from './api-service';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import { resPagination, getTotalNumberForPaginationSearch } from './gallery';
 import { getTotalNumberForPagination } from './gallery';
