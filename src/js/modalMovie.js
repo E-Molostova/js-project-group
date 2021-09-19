@@ -1,6 +1,5 @@
 import api from './api-service';
 import { preparingData } from './gallery';
-// import { api, preparingData, paginate } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
 import { onLibWatchBtn, onLibQueueBtn } from './library';
@@ -64,7 +63,7 @@ function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', closeModalEsc);
   bodyRef.classList.toggle('no-scroll');
-  // lib();
+  
   if (refs.btnHome.classList.contains('active') && refs.pageLibrary.classList.contains('current')) {
     onLibWatchBtn();
   }
@@ -206,11 +205,9 @@ function removeFromQueue(item) {
 
 const checkInLS = currentCard => {
   const watched = getWatched();
-  // console.log(watched);
   const isInWatched = watched.some(item => item.id === currentCard.id);
   if (isInWatched) {
     makeRemoveFromWatchedBtn();
-    console.log('Светится первая кнопка');
   } else {
     makeAddToWatchedBtn();
   }
@@ -219,7 +216,6 @@ const checkInLS = currentCard => {
   const isInQueue = queue.some(item => item.id === currentCard.id);
   if (isInQueue) {
     makeRemoveFromQueueBtn();
-    console.log('Светится вторая кнопка');
   } else {
     makeAddToQueueBtn();
   }

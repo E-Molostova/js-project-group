@@ -1,11 +1,9 @@
 import refs from './refs';
 import { preparingData, getTrendingMovies } from './gallery';
-// import { api, preparingData, getTrendingMovies } from './gallery';
 import api from './api-service';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import { resPagination, getTotalNumberForPaginationSearch } from './gallery';
 import { getTotalNumberForPagination } from './gallery';
-// import pagination from 'tui-pagination';
 import { lib, renderLibraryContent } from './library';
 
 export { getMoviesByValue, spinerStyleToggle, paginationVisible, paginationUnvisible };
@@ -67,7 +65,6 @@ function smthOk() {
   refs.smthWrong.classList.add(headerIsHidden);
 }
 
-// let input = '';
 
 function onSearch(e) {
   e.preventDefault();
@@ -76,24 +73,16 @@ function onSearch(e) {
   api.resetPage();
   paginationVisible();
   const input = refs.searchForm.elements.search.value;
-  // console.log(input);
-
   getMoviesByValue(input);
-
   getTotalNumberForPaginationSearch();
-  // refs.searchForm.reset();
 }
 
-// let testData = '';
 
 function getMoviesByValue(input) {
   api.q = input;
-  // api.galleryPage = paginationPage;
   api
     .fetchQuery()
     .then(data => {
-      console.log(data);
-      // testData = data;
       if (data.results.length !== 0) {
         renderModalContent(data);
         spinerStyleToggle();
@@ -110,11 +99,9 @@ function getMoviesByValue(input) {
     });
 }
 
-// console.log('testData:', testData);
 
 function renderModalContent({ results }) {
   const normilizedResults = results.map(movie => preparingData(movie));
-  // console.log(normilizedResults);
   const markup = makeMoviesMarkup(normilizedResults);
   refs.galleryList.innerHTML = markup;
 }

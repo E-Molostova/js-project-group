@@ -7,11 +7,9 @@ import { getMoviesByValue, spinerStyleToggle, paginationUnvisible } from './head
 import { renderLibraryContent, getQueue, getWatched } from './library';
 export { getTotalNumberForPaginationSearch, paginate, resPagination, getTotalNumberForPagination };
 
-// const api = new ApiService();
 let genres = [];
 const fetchGenres = () => {
   api.fetchGenres().then(data => {
-    // console.log(data);
     getTrendingMovies();
     return saveGenresList(data);
   });
@@ -19,16 +17,15 @@ const fetchGenres = () => {
 const saveGenresList = data => {
   genres = [...data.genres];
 };
-// console.log(genres);
+
 fetchGenres();
-// export default api;
+
 export { api, preparingData, getTrendingMovies };
 
 const getTrendingMovies = () => {
   api
     .fetchTrending()
     .then(data => {
-      // console.log(data);
       renderMovies(data);
     })
     .catch(err => {
@@ -43,7 +40,6 @@ const renderMovies = ({ results }) => {
 };
 
 function preparingData(result) {
-  // console.log(result);
   let releaseYear = 'Unknown';
   if (Date.parse(result.release_date)) {
     releaseYear = new Date(result.release_date).getFullYear();
@@ -63,27 +59,6 @@ function preparingData(result) {
     genres: genresNames,
   };
 }
-
-// const fetchTr = () => {
-//   api.fetchTrending().then(data => {
-//     console.log(data);
-//   });
-// };
-// fetchTr();
-
-// const fetch = () => {
-//   api.q = 'war';
-//   api.fetchQuery().then(data => {
-//     console.log(data);
-//   });
-// };
-
-// const fetch = () => {
-//   api.movid = 55;
-//   api.fetchMovieById().then(data => {
-//     console.log(data);
-//   });
-// };
 
 //---------------------- Lets pagination begin--------------------------------------
 
