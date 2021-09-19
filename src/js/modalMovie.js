@@ -1,4 +1,6 @@
-import { api, preparingData, paginate } from './gallery';
+import api from './api-service';
+import { preparingData } from './gallery';
+// import { api, preparingData, paginate } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
 import { onLibWatchBtn, onLibQueueBtn } from './library';
@@ -12,7 +14,7 @@ refs.modalMovieWindowClsBtn.addEventListener('click', closeModal);
 refs.backdrop.addEventListener('click', closeModalBackdropClick);
 
 async function openModal(evt) {
-  if (evt.target.parentNode !== evt.target.closest('LI')) return
+  if (evt.target.parentNode !== evt.target.closest('LI')) return;
   const movieId = evt.target.closest('LI').id;
   await getMoviesById(movieId);
   clearModalContent();

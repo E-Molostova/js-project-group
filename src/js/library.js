@@ -3,8 +3,9 @@ import refs from './refs';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import { paginationUnvisible } from './header_js';
 import makeDummy from '../templates/dummy.hbs';
-
-import { paginate, api } from './gallery';
+import api from './api-service';
+// import { paginate, api } from './gallery';
+import { paginate } from './gallery';
 export { lib, getQueue, renderLibraryContent, getWatched, onLibWatchBtn, onLibQueueBtn };
 // export {};
 
