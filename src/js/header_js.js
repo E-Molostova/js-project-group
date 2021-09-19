@@ -77,6 +77,7 @@ function onSearch(e) {
   // console.log(input);
 
   getMoviesByValue(input);
+
   getTotalNumberForPaginationSearch();
   // refs.searchForm.reset();
 }
