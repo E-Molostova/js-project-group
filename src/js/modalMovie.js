@@ -81,10 +81,12 @@ function closeModalEsc(evt) {
 function makeRemoveFromWatchedBtn() {
   watchedBtnRef.innerHTML = 'Remove from watched';
   watchedBtnRef.setAttribute('data-action', 'remove');
+  watchedBtnRef.classList.add('active-btn');
 }
 function makeRemoveFromQueueBtn() {
   queueBtnRef.innerHTML = 'Remove from queue';
   queueBtnRef.setAttribute('data-action', 'remove');
+  queueBtnRef.classList.add('active-btn');
 }
 function makeAddToWatchedBtn() {
   console.log(watchedBtnRef);
