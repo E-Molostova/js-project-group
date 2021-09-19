@@ -3,7 +3,7 @@ import refs from './refs';
 import makeMoviesMarkup from '../templates/movieList.hbs';
 import { paginationUnvisible } from './header_js';
 import makeDummy from '../templates/dummy.hbs';
-export { lib };
+export { lib, onLibWatchBtn, onLibQueueBtn, renderLibraryContent };
 
 function lib() {
   refs.btnHome.classList.add('active');

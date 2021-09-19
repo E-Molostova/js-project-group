@@ -37,21 +37,22 @@
 //   modalFooter.classList.active('is-hidden');
 // }
 
-const refs = {
-  openModalBtnFooter: document.querySelector('.js-footer-text-link'),
-  closeModalBtn: document.querySelector('.js-modal-footer__close-btn'),
-  modalFooter: document.querySelector('.js-backdrop-footer'),
-};
+import refs from './refs';
+
+const isHidden = 'is-hidden';
 
 refs.openModalBtnFooter.addEventListener('click', openModalBtnHandler);
 refs.closeModalBtn.addEventListener('click', closeModalBtnHandler);
 
-function openModalBtnHandler() {
-  refs.modalFooter.classList.remove('is-hidden');
+function openModalBtnHandler(e) {
+  e.preventDefault();
+  refs.modalFooter.classList.remove(isHidden);
+  document.body.classList.add('no-scroll');
 }
 
 function closeModalBtnHandler() {
-  refs.modalFooter.classList.add('is-hidden');
+  refs.modalFooter.classList.add(isHidden);
+  document.body.classList.remove('no-scroll');
 }
 //////////////////////////////////////press Esc to close/////////////////
 
@@ -59,7 +60,7 @@ window.addEventListener('keydown', onKeyPress);
 
 function onKeyPress(e) {
   if (e.code === 'Escape') {
-    refs.modalFooter.classList.add('is-hidden');
+    refs.modalFooter.classList.add(isHidden);
   }
 }
 //////////////////////////////click out of modal to close////////////////////////////
@@ -70,7 +71,7 @@ function onMouseClick(e) {
   const backdrop = e.target;
 
   if (backdrop === refs.modalFooter) {
-    refs.modalFooter.classList.add('is-hidden');
+    refs.modalFooter.classList.add(isHidden);
   }
 }
 

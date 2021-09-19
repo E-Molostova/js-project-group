@@ -1,6 +1,7 @@
 import { api, preparingData } from './gallery';
 import makeMoviesById from '../templates/modalMovie.hbs';
 import refs from './refs';
+import { onLibWatchBtn, onLibQueueBtn } from './library';
 
 let currentMov = null;
 const bodyRef = document.querySelector('body');
@@ -62,6 +63,16 @@ function closeModal() {
   refs.backdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', closeModalEsc);
   bodyRef.classList.toggle('no-scroll');
+  // lib();
+  if (refs.btnHome.classList.contains('active') && refs.pageLibrary.classList.contains('current')) {
+    onLibWatchBtn();
+  }
+  if (
+    refs.btnLibrary.classList.contains('active') &&
+    refs.pageLibrary.classList.contains('current')
+  ) {
+    onLibQueueBtn();
+  }
 }
 
 function closeModalBackdropClick(evt) {
@@ -212,4 +223,4 @@ const checkInLS = currentCard => {
   }
 };
 
-export { getWatched, getQueue }
+export { getWatched, getQueue };

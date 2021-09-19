@@ -63,11 +63,13 @@
   @media screen and (min-width: 1024px) {
     width: 882px;
   }
+
+  border-radius: 10px;
 }
 
 .our-team__container {
-  margin-top: 48px;
-  margin-bottom: 41px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .our-team-title {
   font-family: Roboto;
@@ -99,6 +101,11 @@
   }
 }
 .our-team__item {
+  background-color: #e7e0e0;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+
   padding-left: 10px;
   display: flex;
   justify-content: space-between;

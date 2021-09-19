@@ -4,7 +4,7 @@ import makeMoviesMarkup from '../templates/movieList.hbs';
 import { resPagination, getTotalNumberForPaginationSearch } from './gallery';
 import { getTotalNumberForPagination } from './gallery';
 // import pagination from 'tui-pagination';
-import { lib } from './library';
+import { lib, renderLibraryContent } from './library';
 
 export { getMoviesByValue, spinerStyleToggle, paginationVisible, paginationUnvisible };
 
@@ -13,6 +13,8 @@ refs.siteLogoList.addEventListener('click', onPageHome);
 refs.pageLibrary.addEventListener('click', onPageLibrary);
 refs.searchForm.addEventListener('submit', onSearch);
 
+const headerIsHidden = 'header-is-hidden';
+
 function onPageHome(e) {
   e.preventDefault();
   getTotalNumberForPagination();
@@ -20,6 +22,7 @@ function onPageHome(e) {
   clearGalleryList();
   paginationVisible();
   getTrendingMovies();
+  refs.searchForm.reset();
 
   if (refs.pageHome.classList.contains('current')) {
     return;
@@ -46,19 +49,20 @@ function updateBgImg() {
 }
 
 function changePage() {
-  refs.searchContainer.classList.toggle('header-is-hidden');
-  refs.btnHome.classList.toggle('header-is-hidden');
-  refs.btnLibrary.classList.toggle('header-is-hidden');
+  refs.searchContainer.classList.toggle(headerIsHidden);
+  refs.btnHome.classList.toggle(headerIsHidden);
+  refs.btnLibrary.classList.toggle(headerIsHidden);
   refs.pageHome.classList.toggle('current');
   refs.pageLibrary.classList.toggle('current');
 }
 
 function smthWrong() {
-  refs.smthWrong.classList.remove('header-is-hidden');
+  refs.smthWrong.classList.remove(headerIsHidden);
+  renderLibraryContent([]);
 }
 
 function smthOk() {
-  refs.smthWrong.classList.add('header-is-hidden');
+  refs.smthWrong.classList.add(headerIsHidden);
 }
 
 // let input = '';
@@ -73,7 +77,7 @@ function onSearch(e) {
 
   getMoviesByValue(input);
   getTotalNumberForPaginationSearch();
-  refs.searchForm.reset();
+  // refs.searchForm.reset();
 }
 
 // let testData = '';
@@ -119,14 +123,20 @@ function clearGalleryList() {
 }
 
 function spinerStyleToggle() {
-  refs.searchSvg.classList.toggle('header-is-hidden');
-  refs.searchSpin.classList.toggle('header-is-hidden');
+  refs.searchSvg.classList.toggle(headerIsHidden);
+  refs.searchSpin.classList.toggle(headerIsHidden);
 }
 
 function paginationUnvisible() {
-  refs.pagination.classList.add('header-is-hidden');
+  refs.pagination.classList.add(headerIsHidden);
 }
 
 function paginationVisible() {
-  refs.pagination.classList.remove('header-is-hidden');
+  refs.pagination.classList.remove(headerIsHidden);
+}
+
+refs.searchForm.addEventListener('input', onClearError);
+
+function onClearError(e) {
+  smthOk();
 }

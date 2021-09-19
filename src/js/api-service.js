@@ -12,12 +12,16 @@ export default class ApiService {
       api_key: this.#API_KEY,
     });
 
-    return fetch(`${this.BASE_URL}/genre/movie/list?${genresParams}`).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error('Something went wrong');
-    });
+    return fetch(`${this.BASE_URL}/genre/movie/list?${genresParams}`)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error('Something went wrong');
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
   }
   // ttps://api.themoviedb.org/3/genre/movie/list?api_key=43599aecc4a107996f3426684f8b9f50&language=en-US
   fetchTrending() {
@@ -26,12 +30,16 @@ export default class ApiService {
       page: this.page,
     });
 
-    return fetch(`${this.BASE_URL}/trending/movie/week?${trendingParams}`).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error('Something went wrong');
-    });
+    return fetch(`${this.BASE_URL}/trending/movie/week?${trendingParams}`)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error('Something went wrong');
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
   }
 
   fetchQuery() {

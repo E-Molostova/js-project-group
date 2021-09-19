@@ -11,6 +11,7 @@ const refs = {
   btnLibrary: document.querySelector('#library-btn'),
   openModalBtnFooter: document.querySelector('.js-footer-text-link'),
   modalFooter: document.querySelector('.js-backdrop-footer'),
+  closeModalBtn: document.querySelector('.js-modal-footer__close-btn'),
   modalMovieWindow: document.querySelector('[data-modal-movie]'),
   modalContent: document.querySelector('.modal-wraper'),
   backdrop: document.querySelector('.backdrop'),
