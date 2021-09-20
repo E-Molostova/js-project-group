@@ -23,6 +23,7 @@ function onKeyPress(e) {
   if (e.code === 'Escape') {
     refs.modalFooter.classList.add(isHidden);
   }
+  document.body.classList.remove('no-scroll');
 }
 ///////////////////////click out of modal to close////////////////////////////
 
