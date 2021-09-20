@@ -34,6 +34,7 @@ function onMouseClick(e) {
   if (backdrop === refs.modalFooter) {
     refs.modalFooter.classList.add(isHidden);
   }
+  document.body.classList.remove('no-scroll');
 }
 
 ////////////////////spiner////////////////////////////////////
