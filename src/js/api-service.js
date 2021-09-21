@@ -73,7 +73,7 @@ class ApiService {
   }
 
   set q(qValue) {
-    this.query = qValue.split(' ').join('%20');
+    this.query = qValue.split(' ').join('+');
   }
 
   set movId(idValue) {
